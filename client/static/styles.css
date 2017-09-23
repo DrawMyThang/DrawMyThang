@@ -19,11 +19,12 @@
 
 .canvas{
 	border: solid black 2px;
+	flex-grow:1;
 }
 
 .users{
 	flex:1;
-    min-height:600px;
+    min-height:550px;
     background-color: yellow;
 }
 
