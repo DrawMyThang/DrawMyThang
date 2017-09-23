@@ -6,8 +6,9 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --watch --progress --hot --config ./webpack.config.js --content-base client/static/",
-    "build": "webpack --progress"
+    "dev": "webpack-dev-server --progress --content-base client/static/",
+    "build": "webpack --progress",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,12 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
+    "file-loader": "^0.11.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "style-loader": "^0.18.2",
@@ -35,6 +42,7 @@
   "dependencies": {
     "@blueprintjs/core": "^1.28.0",
     "body-parser": "^1.18.1",
+    "express": "^4.15.4",
     "morgan": "^1.8.2",
     "react-addons-css-transition-group": "^15.6.0",
     "react-router-dom": "^4.2.2",

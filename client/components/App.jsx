@@ -16,8 +16,8 @@ export default class App extends React.Component{
 				<BrowserRouter>
 					<Header />
 				</BrowserRouter>
-				<ChatBox />
 				<Canvas />
+				<ChatBox/>
 			</div>		
 		);
 	}
