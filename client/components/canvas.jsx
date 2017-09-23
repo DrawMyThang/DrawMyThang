@@ -2,7 +2,7 @@ import React from 'react';
 
 var Canvas = (props) => {
     return (
-        <div>
+        <div className="canvas">
             <canvas>
             </canvas>
         </div>

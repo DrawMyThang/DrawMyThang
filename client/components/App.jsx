@@ -12,15 +12,16 @@ export default class App extends React.Component{
 
 	render(){
 		return(
-			<div>
-				<Canvas />
-				<div className ="chatsUsers">
-					 <section className="sidebar">
-					    <div className = "users"> this will eventually be users box</div>
-					    <ChatBox className = "chatBox"/>
-					 </section>
-				 </div>
+			<div >
+				<div className="whole">
+						 <section className="sidebar">
+						    <div className = "users"> this will eventually be users box</div>
+						    <ChatBox className = "chatBox"/>
+						 </section>
+						<Canvas />
+				</div>
 			</div>
+
 		
 		)
 	}
