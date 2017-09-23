@@ -1,29 +1,43 @@
 {
-  "name": "testChatReact",
+  "name": "drawmythang",
   "version": "1.0.0",
-  "description": "",
+  "description": "Online pictionary game",
   "main": "server/server.js",
   "scripts": {
     "start": "nodemon server/server.js",
-    "webpack": "webpack -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --watch --progress --hot --config ./webpack.config.js --content-base client/static/",
+    "build": "webpack --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrawMyThang/DrawMyThang.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jason Nguyen, Jordan Daniels, Daniel Lien",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DrawMyThang/DrawMyThang/issues"
+  },
+  "homepage": "https://github.com/DrawMyThang/DrawMyThang#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "style-loader": "^0.18.2",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2"
   },
   "dependencies": {
+    "@blueprintjs/core": "^1.28.0",
     "body-parser": "^1.18.1",
     "morgan": "^1.8.2",
+    "react-addons-css-transition-group": "^15.6.0",
+    "react-router-dom": "^4.2.2",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3"
   }
