@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Header from './Header.jsx';
-import ChatBox from './chatBox.jsx';
-import Canvas from './canvas.jsx';
+import Header from './Header.js';
+import ChatBox from './chatBox.js';
+import Canvas from './canvas.js';
 //import openSocket from 'socket.io-client';
 
 export default class App extends React.Component{
