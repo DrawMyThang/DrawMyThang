@@ -4,21 +4,34 @@
 	 box-sizing: border-box; 
 }
 
-p {
-	color:blue,
-	font-size: 14px;
-}
-.chatWrapper{
+
+
+/*.chatWrapper{
 	width: 100%;
-    max-width: 200px;
-    margin: 0 auto;
+    max-width: 800px;
+    height: 10%;
+    max-height: 200px;
+    display: flex;
+    bottom: 100px;
 }
 
+.chat {
+	flex-grow: 1;
+}
+
+.flex-container{
+	display: flex;
+}*/
+
 #form { 
-	background: #000; 
+	background: #444; 
 	padding: 3px; 
 	position: absolute; 
-	bottom: 0; width: 30%;
+	bottom: 0; 
+	width: 30%;
+	min-width: 353px;
+	max-width: 353px;
+
 }
 
 #form input { 
@@ -26,12 +39,14 @@ p {
 	 padding: 10px; 
 	 width: 90%; 
 	 margin-right: .5%; 
+	 max-width: 300px
 }
 #form button { 
 	width: 9%; 
 	background: rgb(130, 224, 255); 
 	border: none; 
 	padding: 10px;
+	min-width: 45px;
 }
 
 #messages { 
