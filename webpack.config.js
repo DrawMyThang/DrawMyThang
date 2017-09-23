@@ -1,7 +1,7 @@
 const path = require('path');
 
 const SRC_DIR = path.resolve(__dirname, 'client');
-const BUILD_DIR = path.resolve(__dirname, 'client/static/bundle');
+const BUILD_DIR = path.resolve(__dirname, 'client/static');
 
 module.exports = {
   entry: path.resolve(SRC_DIR, 'index.jsx'),

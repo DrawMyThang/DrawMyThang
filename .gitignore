@@ -3,4 +3,8 @@
 .eslintcache
 client/static/bundle
 node_modules
+*.ttf
+*.woff
+*.eot
+bundle.js
 
