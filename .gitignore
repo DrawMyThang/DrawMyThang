@@ -1,6 +1,6 @@
 .DS_store
 .env
 .eslintcache
-
+client/static/bundle
 node_modules
-bundle.js
+

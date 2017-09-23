@@ -5,10 +5,7 @@ $(document).ready(function(){
     context.fillStyle = "#FF0000";
     var draw = function () {
         context.beginPath();
-        context.lineWidth="6";
-        context.strokeStyle="red";
-        context.rect(20, 20, 150, 100);
-        context.stroke();
+        context.fillRect(20, 20, 150, 100);
     };
 
     draw();
