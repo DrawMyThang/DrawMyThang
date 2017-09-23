@@ -18,8 +18,9 @@
 }
 
 .canvas{
-	border: solid black 2px;
+	border: dashed blue 2px;
 	flex-grow:1;
+	text-align: center;
 }
 
 .users{
