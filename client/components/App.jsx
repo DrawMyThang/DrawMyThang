@@ -10,6 +10,7 @@ class App extends React.Component {
   //   super();
   // }
 
+
   render() {
     return (
       <div>
@@ -17,10 +18,17 @@ class App extends React.Component {
           <Header />
         </BrowserRouter>
         <Canvas />
-        <ChatBox />
+        <div className ="chatsUsers">
+           <section className="sidebar">
+              <div className = "users"> this will eventually be users box</div>
+              Chats
+              <ChatBox />
+           </section>
+         </div>
       </div>
     );
   }
 }
+
 
 export default App;
