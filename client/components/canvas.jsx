@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Canvas = (props) => {
-  return (
-    <div>
-      <canvas>
-      </canvas>
-    </div>
-  );
+
+var Canvas = (props) => {
+    return (
+        <div className="canvas">
+            <canvas>
+            </canvas>
+        </div>
+    );
 };
 
 export default Canvas;

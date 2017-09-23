@@ -5,12 +5,9 @@
 }
 
 /*container for users and chats*/
-.chatsUsers{
-    display: flex;
-    flex-direction: row;
-    height: 80vh;
+.whole{
+	display:flex;
 }
-
 .sidebar {
 
   display: flex;
@@ -18,12 +15,15 @@
   flex: 1 0 10em; 
   background-color: lightgray;
   max-width: 400px;
-  max-height: 800px;
+}
+
+.canvas{
+	border: solid black 2px;
 }
 
 .users{
 	flex:1;
-    min-height:400px;
+    min-height:600px;
     background-color: yellow;
 }
 
