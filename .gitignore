@@ -1,4 +1,6 @@
 .DS_store
+.env
+.eslintcache
+
 node_modules
 bundle.js
-
