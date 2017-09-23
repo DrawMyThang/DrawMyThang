@@ -3,6 +3,7 @@ import socket from 'socket.io-client';
 //openSocket('http://localhost:3000');
 
 
+
 class ChatBox extends React.Component {
   constructor(props) {
     super(props);
@@ -37,10 +38,12 @@ class ChatBox extends React.Component {
     this.message = e.target.value;
   }
 
+
   render(){
     return(
       <div className="chatWrapper">
-        <div className = "flex-container">
+        <div id="flex-container">
+          <div id="chatBoxTitle">Chats:</div>
         {this.state.text.map((msg,i) => <p className="chat" key={i}>{msg}</p>)}
             <div id="form">
               <input id="m" onChange={this.handleText} />

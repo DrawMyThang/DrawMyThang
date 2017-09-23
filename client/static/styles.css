@@ -3,12 +3,22 @@
 	 padding: 0; 
 	 box-sizing: border-box; 
 }
+
 /*container for users and chats*/
 .chatsUsers{
     display: flex;
-
     flex-direction: row;
-    height: 100vh;
+    height: 80vh;
+}
+
+.sidebar {
+
+  display: flex;
+  flex-direction: column; 
+  flex: 1 0 10em; 
+  background-color: lightgray;
+  max-width: 400px;
+  max-height: 800px;
 }
 
 .users{
@@ -17,20 +27,25 @@
     background-color: yellow;
 }
 
+
+
+
 .chatWrapper{
+	min-height: 400px;
 	width: 100%;
     max-width: 800px;
     display: flex;
+    border: solid black 2px;
    
 }
 
-.flex-container {
-	
-	flex-direction: column;
-	flex-wrap: wrap;
-	max-height: 200px;
-	border: solid black 1px;
-	min-width: 400px;
+
+
+#chatBoxTitle{
+	background-color: lightblue;
+	display: flex;
+	flex-grow: 1;
+	min-width: 396px;
 }
 
 
