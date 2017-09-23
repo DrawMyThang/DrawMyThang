@@ -1,5 +1,6 @@
 import React from 'react';
 
+<<<<<<< HEAD
 const Canvas = (props) => {
   return (
     <div>
@@ -7,6 +8,15 @@ const Canvas = (props) => {
       </canvas>
     </div>
   );
+=======
+var Canvas = (props) => {
+    return (
+        <div>
+            <canvas id="draw-comp">
+            </canvas>
+        </div>
+    );
+>>>>>>> canvas renders drawing
 };
 
 export default Canvas;
