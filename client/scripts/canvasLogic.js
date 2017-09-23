@@ -1,28 +1,45 @@
 $(document).ready(function(){
     var canvas = document.getElementById("draw-comp");
-    console.log(document.getElementById("draw-comp"));
     var context = canvas.getContext('2d');
+    var leftOffSet = canvas.offsetLeft;
+    var topOffSet = canvas.offsetTop;
     var enableDraw = false;
-    context.fillStyle = "#FF0000";
-    var draw = function (mouseX, mouseY) {
+    var detectClick = (event) => {
+        console.log(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+    }
+
+    var currentPos = {};
+
+    var drawLine = (x0, y0, x1, y1) => {
         context.beginPath();
-        context.fillRect(20, 20, 150, 100);
-    };
-
-  
-    var test = function (event) {
-        if (enableDraw) {
-            console.log(event.clientX);
-            console.log(event.clientY);
-        }
-    }   
-    $('#draw-comp').mousemove(test);
-
-    $('#draw-comp').mousedown(() => {
+        context.moveTo(x0, y0);
+        context.lineTo(x1, y1);
+        context.strokeStyle = 'black';
+        context.lineWidth = 2;
+        context.stroke();
+        context.closePath();
+    }
+    var onMouseDown = (e) => {
         enableDraw = true;
-    });
-    $('#draw-comp').mouseup(() => {
-        enableDraw = false
-    });
-    draw();
+        currentPos.x = e.clientX;
+        currentPos.y = e.clientY;
+    }
+    var onMouseUp = () => {
+        enableDraw = false;
+    }
+
+    var onMouseMove = (e) => {
+        if (enableDraw) {
+        drawLine(currentPos.x - leftOffSet, currentPos.y - topOffSet
+        , e.clientX - leftOffSet, e.clientY - topOffSet);
+        currentPos.x = e.clientX;
+        currentPos.y = e.clientY;
+        }
+    }
+
+    canvas.addEventListener('click', detectClick, false);
+    canvas.addEventListener('mousemove', onMouseMove, false);
+    canvas.addEventListener('mousedown', onMouseDown, false);
+    canvas.addEventListener('mouseup', onMouseUp, false);
+
 });
