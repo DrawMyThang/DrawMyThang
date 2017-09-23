@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --content-base client/static/",
     "build": "webpack --progress",
-    "lint": "eslint ./"
+    "lint": "eslint --cache --ext .jsx,.js ./"
   },
   "repository": {
     "type": "git",
@@ -33,8 +33,6 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "file-loader": "^0.11.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2"
@@ -43,8 +41,10 @@
     "@blueprintjs/core": "^1.28.0",
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
-    "morgan": "^1.8.2",
+    "normalize.css": "^7.0.0",
+    "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
+    "react-dom": "^15.6.1",
     "react-router-dom": "^4.2.2",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3"

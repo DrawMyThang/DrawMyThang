@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Popover, PopoverInteractionKind, Position } from '@blueprintjs/core'
+// import { Popover, PopoverInteractionKind, Position } from '@blueprintjs/core';
 
 class Header extends React.Component {
   render() {
