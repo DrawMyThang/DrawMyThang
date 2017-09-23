@@ -1,12 +1,14 @@
 import React from 'react';
 
-const Canvas = (props) => {
-  return (
-    <div>
-      <canvas>
-      </canvas>
-    </div>
-  );
+
+var Canvas = (props) => {
+    return (
+        <div className="canvas">
+        	Canvas and Word to draw will be here
+            <canvas>
+            </canvas>
+        </div>
+    );
 };
 
 export default Canvas;
