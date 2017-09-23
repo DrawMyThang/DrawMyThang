@@ -12,9 +12,12 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../client/static')));
 
-// socket set up 
+const server = app.listen(3000, () => {
+  console.log(`Server is listening on: ${port}`);
+});
 
-const io = socket(app);
+// socket set up 
+const io = socket(server);
 
 io.on('connection', (socks) => {
   console.log('user is connected id:', socks.id);
@@ -27,8 +30,4 @@ io.on('connection', (socks) => {
   socks.on('disconnect', () => {
     console.log('user ', socks.id, ' disconnected');
   });
-});
-
-app.listen(3000, () => {
-  console.log(`Server is listening on: ${port}`);
 });
