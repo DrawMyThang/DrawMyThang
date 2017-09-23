@@ -40,7 +40,8 @@ export default class ChatBox extends React.Component{
 	render(){
 		return(
 			<div className="chatWrapper">
-				<div className = "flex-container">
+				<div id="flex-container">
+					<div id="chatBoxTitle">Chats:</div>
 				{this.state.text.map((msg,i) => <p className="chat" key={i}>{msg}</p>)}
 				    <div id="form">
 				      <input id="m" onChange={this.handleText} />

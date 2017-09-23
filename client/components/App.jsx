@@ -17,8 +17,7 @@ export default class App extends React.Component{
 				<div className ="chatsUsers">
 					 <section className="sidebar">
 					    <div className = "users"> this will eventually be users box</div>
-					    Chats
-					    <ChatBox />
+					    <ChatBox className = "chatBox"/>
 					 </section>
 				 </div>
 			</div>
