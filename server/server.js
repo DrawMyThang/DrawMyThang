@@ -1,34 +1,31 @@
-const express = require('express')
-const path = require('path')
-const socket = require('socket.io')
-const bodyParser = require('body-parser')
-const morgan = require('morgan')
+const express = require('express');
+const path = require('path');
+const socket = require('socket.io');
+const bodyParser = require('body-parser');
 
-const app = express()
+const app = express();
 
-let port = 3000
+const port = 8080;
 
-const server = app.listen(3000, ()=>{
-	console.log("Server is listening on: " + port)
-})
-app.use(bodyParser.json())
-app.use(morgan('dev'))
-app.use(express.static(path.join(__dirname, '../client/static') ))
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '../client/static')));
 
-//socket set up 
+const server = app.listen(port, () => {
+  console.log(`Server is listening on: ${port}`);
+});
 
-const io = socket(server)
+// socket set up 
+const io = socket(server);
 
-io.on('connection', (socket)=>{
-	console.log('user is connected id:', socket.id)
+io.on('connection', (socks) => {
+  console.log('user is connected id:', socks.id);
 
-	socket.on('chat message', function(msg){
-	console.log('message: ' + msg );
-	 io.emit('chat message', msg);
-  	});
-
-	socket.on('disconnect', function(){
-    console.log('user ' + socket.id +' disconnected');
+  socks.on('chat message', (msg) => {
+    console.log('message: ', msg);
+    io.emit('chat message', msg);
   });
-})
 
+  socks.on('disconnect', () => {
+    console.log('user ', socks.id, ' disconnected');
+  });
+});
