@@ -39,9 +39,8 @@ class ChatBox extends React.Component {
   render(){
     return(
       <div className="chatWrapper">
-    
           <div id="chatBoxTitle">Chats:</div>
-        {this.state.text.map((msg,i) => <p className="chat" key={i}>{msg}</p>)}
+        {this.state.text.map((msg,i) =>  <div className = "userChatLog"> <div className="userPhoto"></div> <p className="chatMessage" key={i}>{msg}</p> </div>)}
             <div id="form">
               <input id="m" onChange={this.handleText} />
               <button onClick={()=>{
