@@ -1,6 +1,5 @@
 import React from 'react';
 import socket from 'socket.io-client';
-//openSocket('http://localhost:3000');
 
 class ChatBox extends React.Component {
   constructor(props) {
@@ -54,6 +53,7 @@ class ChatBox extends React.Component {
 
     )
   }
+
 }
 
 export default ChatBox;
