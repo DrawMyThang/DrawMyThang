@@ -5,13 +5,12 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const port = 3000;
+const port = 8080;
 
 app.use(bodyParser.json());
-app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../client/static')));
 
-const server = app.listen(3000, () => {
+const server = app.listen(port, () => {
   console.log(`Server is listening on: ${port}`);
 });
 

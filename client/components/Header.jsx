@@ -6,7 +6,7 @@ class Header extends React.Component {
   render() {
     return (
       <nav className="pt-navbar">
-        <div className="pat-navbar-group pt-align-left">
+        <div className="pt-navbar-group pt-align-left">
           <div className="pt-navbar-heading">DRAW THIS THANG</div>
           <input className="pt-input" placeholder="Search..." type="text" />
         </div>

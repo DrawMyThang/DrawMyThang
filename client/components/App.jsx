@@ -15,18 +15,16 @@ class App extends React.Component {
         <BrowserRouter>
           <Header />
         </BrowserRouter>
+      <div id ="whole">
+        <section className="sidebar">
+          <div className = "users"> this will eventually be users box</div>
+          <ChatBox />
+        </section>
         <Canvas />
-        <div className ="chatsUsers">
-           <section className="sidebar">
-              <div className = "users"> this will eventually be users box</div>
-              Chats
-              <ChatBox />
-           </section>
-         </div>
+      </div>
       </div>
     );
   }
 }
-
 
 export default App;
