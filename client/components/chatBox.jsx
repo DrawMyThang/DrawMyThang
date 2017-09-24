@@ -19,7 +19,7 @@ class ChatBox extends React.Component {
   }
 
   componentDidMount() {
-    this.socket = socket('http://localhost:3000');
+    this.socket = socket('http://localhost:8080');
     this.socket.on('chat message', this.chatMessage);
   }
 
@@ -42,7 +42,7 @@ class ChatBox extends React.Component {
   render(){
     return(
       <div className="chatWrapper">
-        <div id="flex-container">
+    
           <div id="chatBoxTitle">Chats:</div>
         {this.state.text.map((msg,i) => <p className="chat" key={i}>{msg}</p>)}
             <div id="form">
@@ -52,7 +52,6 @@ class ChatBox extends React.Component {
                 }
               }> Send</button>
             </div>
-        </div>
       </div>
 
     )

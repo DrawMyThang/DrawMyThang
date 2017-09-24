@@ -5,51 +5,50 @@
 }
 
 /*container for users and chats*/
-.whole{
+#whole{
 	display:flex;
+	flex-direction: row;
 }
-.sidebar {
 
-  display: flex;
-  flex-direction: column; 
+.sidebar {
+  flex-direction: row; 
   flex: 1 0 10em; 
   background-color: lightgray;
   max-width: 400px;
+ 
 }
 
 .canvas{
 	border: dashed blue 2px;
-	flex-grow:1;
 	text-align: center;
+	flex-grow: 1;
+
 }
 
 .users{
-	flex:1;
-    min-height:550px;
-    background-color: yellow;
+	
+  height:550px;
+  background-color: yellow;
 }
-
-
-
 
 .chatWrapper{
-	min-height: 400px;
-	width: 100%;
-    max-width: 800px;
-    display: flex;
-    border: solid black 2px;
+	height:355px;
+	width: 100%
+  max-width: 800px;
+  display: flex;
+  border: solid black 2px;
+  flex-direction: column;
    
 }
-
-
 
 #chatBoxTitle{
 	background-color: lightblue;
 	display: flex;
+	flex-direction: column;
 	flex-grow: 1;
-	min-width: 396px;
+	width: 396px;
+	max-height: 20px;
 }
-
 
 
 #form { 
@@ -60,7 +59,7 @@
 	width: 30%;
 	min-width: 400px;
 	max-width: 400px;
-
+	align-items:flex-end;
 }
 
 #form input { 
@@ -68,8 +67,9 @@
 	padding: 10px; 
 	width: 90%; 
 	margin-right: .5%; 
-	max-width: 347px
+	max-width: 347px;
 }
+
 #form button { 
 	width: 9%; 
 	background: rgb(130, 224, 255); 
@@ -92,6 +92,9 @@
 	background: #eee; 
 }
 
+button {
+	text-align: center;
+}
 #draw-comp {
 	width: 500px;
 	height: 500px;
