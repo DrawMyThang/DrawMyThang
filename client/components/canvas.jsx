@@ -1,11 +1,10 @@
 import React from 'react';
 
-
 var Canvas = (props) => {
     return (
         <div className="canvas">
         	Canvas and Word to draw will be here
-            <canvas>
+            <canvas id="draw-comp">
             </canvas>
         </div>
     );

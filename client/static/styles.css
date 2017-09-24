@@ -91,3 +91,11 @@
 #messages li:nth-child(odd) { 
 	background: #eee; 
 }
+
+#draw-comp {
+	width: 500px;
+	height: 500px;
+	border: 5px dashed red;
+	position: absolute;
+
+}
