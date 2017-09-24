@@ -1,6 +1,8 @@
 $(document).ready(function(){
     var canvas = document.getElementById("draw-comp");
     var context = canvas.getContext('2d');
+    context.canvas.height = canvas.clientHeight;
+    context.canvas.width = canvas.clientWidth;
     var leftOffSet = canvas.offsetLeft;
     var topOffSet = canvas.offsetTop;
     var enableDraw = false;
@@ -11,6 +13,7 @@ $(document).ready(function(){
     var currentPos = {};
 
     var drawLine = (x0, y0, x1, y1) => {
+        console.log(x1, y1);
         context.beginPath();
         context.moveTo(x0, y0);
         context.lineTo(x1, y1);
