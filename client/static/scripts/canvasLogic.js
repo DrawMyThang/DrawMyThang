@@ -3,6 +3,7 @@ $(document).ready(function(){
     var context = canvas.getContext('2d');
     context.canvas.height = canvas.clientHeight;
     context.canvas.width = canvas.clientWidth;
+    console.log(context);
     var leftOffSet = canvas.offsetLeft;
     var topOffSet = canvas.offsetTop;
     var enableDraw = false;
@@ -40,9 +41,13 @@ $(document).ready(function(){
         }
     }
 
+    function onResize() {
+        console.log(context.canvas);
+    }
     canvas.addEventListener('click', detectClick, false);
     canvas.addEventListener('mousemove', onMouseMove, false);
     canvas.addEventListener('mousedown', onMouseDown, false);
     canvas.addEventListener('mouseup', onMouseUp, false);
-
+    window.addEventListener('resize', onResize, false);
+    
 });
