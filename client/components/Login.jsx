@@ -1,14 +1,41 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Toaster, Intent } from '@blueprintjs/core';
+
+import { app, githubProvider } from '../base.jsx';
+
+const loginStyles = {
+  width: "90%",
+  maxWidth: "24rem",
+  margin: "1rem auto",
+  border: "0.1rem solid #ddd",
+  borderRadius: "0.3rem",
+  padding: "0.3rem"
+}
 
 class Login extends Component {
   constructor(props) {
     super(props)
     this.authWithGithub = this.authWithGithub.bind(this);
     this.authWithEmailPassword = this.authWithEmailPassword.bind(this);
+
+    this.state = {
+      redirect: false
+    }
   }
 
   authWithGithub() {
     console.log("Authed with Github");
+    app.auth().signInWithPopup(githubProvider)
+      .then((result, error) => {
+        if (error) {
+          this.toaster.show({ 
+            intent: Intent.DANGER, message: "Unable to login with Github" 
+          });
+        } else {
+          this.setState({ redirect: true });
+        }
+      });
   }
 
   authWithEmailPassword(event) {
@@ -21,8 +48,14 @@ class Login extends Component {
   }
 
   render() {
+
+    if (this.state.redirect === true) {
+      return <Redirect to='/' />
+    }
+
     return (
-      <div>
+      <div style={loginStyles}>
+        <Toaster ref={(element) => { this.toaster = element }} />
         <button style={{width: "100%"}} className="pt-button pt-intent-primary" onClick={() => { this.authWithGithub() }}>Login with Github</button>
         <hr style={{marginTop: "1rem", marginBottom: "1rem"}}/>
         <form onSubmit={(event) => { this.authWithEmailPassword(event) }} ref={(form) => { this.loginForm = form}}>

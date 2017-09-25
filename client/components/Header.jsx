@@ -8,19 +8,20 @@ class Header extends Component {
       <nav className="pt-navbar">
         <div className="pt-navbar-group pt-align-left">
           <div className="pt-navbar-heading">DRAW THIS THANG</div>
-          {this.props.authenticated
+          {/* {this.props.authenticated
             ? <input className="pt-input" placeholder="Search..." type="text" />
             : null
-          }          
+          } */}
         </div>
         {
           this.props.authenticated
           ? (
             <div className="pt-navbar-group pt-align-right">
-              <Link className="pt-button pt-minimal pt-icon-music" to="/songs">Songs</Link>
+              {/* <Link className="pt-button pt-minimal pt-icon-music" to="/">Rooms</Link> */}
               <span className="pt-navbar-divider"></span>
               <button className="pt-button pt-minimal pt-icon-user"></button>
               <button className="pt-button pt-minimal pt-icon-cog"></button>
+              <Link className="pt-button pt-minimal pt-icon-log-out" to="/logout" aria-label="Log Out"></Link>
             </div>
           )
             : (
@@ -28,7 +29,7 @@ class Header extends Component {
                 <Link className="pt-button pt-intent-primary" to="/login">Register/Log In</Link>
               </div>
             )
-        }   
+        }
       </nav>
     );
   }
