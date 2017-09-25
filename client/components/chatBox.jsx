@@ -1,7 +1,7 @@
 import React from 'react';
 import socket from 'socket.io-client';
 
-class ChatBox extends React.Component {
+export default class ChatBox extends React.Component {
   constructor(props) {
     super(props);
     console.log(props, 'chat box props');
@@ -64,4 +64,4 @@ class ChatBox extends React.Component {
 
 }
 
-export default ChatBox;
+

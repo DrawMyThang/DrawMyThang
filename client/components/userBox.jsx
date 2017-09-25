@@ -1,4 +1,5 @@
 import React from 'react';
+import ChatBox from './chatBox.jsx'
 import socket from 'socket.io-client';
 
 export default class UserBox extends React.Component {
@@ -11,19 +12,22 @@ export default class UserBox extends React.Component {
   }
 
 
-  componentDidMount() {
+  componentWillMount() {
     this.socket = socket('http://localhost:8080');
     this.socket.on('user id', this.getUserId);
     this.socket.emit('user id', this.state.users);
-    console.log("componentDidMount")
   }
 
 
+
   getUserId(users) {
-  	console.log(users, "userBox")
+  	console.log(users, "users from get USERid ")
+    console.log(this.state.users, "this.state.users")
     this.setState({
-      users: [...this.state.users, users],
+      users: [...users],
     });
+        console.log(this.state.users, "this.state.users after set state")
+
   }
 
   render(){
