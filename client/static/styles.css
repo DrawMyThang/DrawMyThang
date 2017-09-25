@@ -25,9 +25,9 @@
 }
 
 
-.users{
+.userBox{
   height:550px;
-  background-color: yellow;
+  background-color: lightgray;
 }
 
 .chatWrapper{
