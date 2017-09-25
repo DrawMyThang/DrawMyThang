@@ -17,7 +17,10 @@ const server = app.listen(port, () => {
 // socket set up 
 const io = socket(server);
 
+
 const userArr = [];
+
+
 io.on('connection', (socks) => {
   console.log('user is connected id:', socks.id);
 
@@ -29,13 +32,18 @@ io.on('connection', (socks) => {
 
     socks.on('user id', () => {
     	userArr.push(socks.id)
+    	console.log(userArr, 'userArr')
   	io.emit('user id', userArr)
   	console.log("user id emitting", userArr)
   	})
  
 
   socks.on('disconnect', () => {
-  	userArr.splice(socks.id, 1)
+  	if (userArr.includes(socks.id)){
+  		userArr.splice(userArr.indexOf(socks.id), 1)
+  		io.emit('disconnect', userArr)
+  	}
+  	console.log(userArr, "userArr after disconnect")
     console.log('user ', socks.id, ' disconnected');
   });
 });

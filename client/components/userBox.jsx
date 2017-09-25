@@ -15,6 +15,7 @@ export default class UserBox extends React.Component {
   componentWillMount() {
     this.socket = socket('http://localhost:8080');
     this.socket.on('user id', this.getUserId);
+    this.socket.on('disconnect', this.getUserId)
     this.socket.emit('user id', this.state.users);
   }
 
