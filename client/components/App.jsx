@@ -13,7 +13,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Header />
         </BrowserRouter>
-      <div id ="whole">
+      <div id="whole">
         <section className="sidebar">
           <UserBox />
           <ChatBox />

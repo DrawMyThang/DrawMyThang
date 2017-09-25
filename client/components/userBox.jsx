@@ -29,7 +29,8 @@ export default class UserBox extends React.Component {
   render(){
   	return(
   			<div className="userBox">
-  					{this.state.users}
+  					{this.state.users.map((user,i) => <p key={i}> User {i+1}: {user}</p>)}
+  					
   			</div>
   		)
   }
