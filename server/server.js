@@ -25,6 +25,11 @@ io.on('connection', (socks) => {
     io.emit('chat message', msg);
   });
 
+  socks.on('user id', () => {
+  	io.emit('user id', socks.id)
+  	console.log("user id emitting")
+  })
+
   socks.on('disconnect', () => {
     console.log('user ', socks.id, ' disconnected');
   });

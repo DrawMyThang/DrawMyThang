@@ -25,15 +25,15 @@
 }
 
 
-.users{
+.userBox{
   height:550px;
-  background-color: yellow;
+  background-color: lightgray;
 }
 
 .chatWrapper{
   height:355px;
-  width: 100%
-  max-width: 800px;
+  width: 100%;
+  max-width: 396px;
   border-radius: 5px;
   display: flex;
   align-items: flex-start;
@@ -66,6 +66,7 @@
 	margin-bottom: 10px;
 	min-height: 51px;
 	max-height: 51px
+	max-width: 400px;
 }
 
 .userChatLog .userPhoto{
@@ -78,7 +79,8 @@
 
 .userChatLog .chatMessage{
 	width: 90%;
-	min-width: 350px;
+	min-width: 340px;
+	max-width: 340px;
 	padding: 7px;
 	margin: 3px 8px 0;
 	background: #1ddced;
