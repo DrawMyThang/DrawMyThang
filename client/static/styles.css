@@ -53,6 +53,10 @@
 	min-width: 396px;
 	min-height: 20px;
 	max-height: 20px;
+	margin-bottom: 5px;
+	text-align: center;
+	color: white;
+	box-shadow: 3px 3px #696969;
 }
 
 .userChatLog {
@@ -65,21 +69,23 @@
 }
 
 .userChatLog .userPhoto{
-	min-width: 40px;
-	min-height: 40px;
-	background: black;
+	margin-top: 6px;
+	margin-left: 5px;
+	max-width: 40px;
+	max-height: 40px;
 	border-radius: 50%;
 }
 
 .userChatLog .chatMessage{
 	width: 90%;
 	min-width: 350px;
-	padding: 15px;
+	padding: 7px;
 	margin: 3px 8px 0;
 	background: #1ddced;
 	border-radius: 10px;
 	color: #fff;
 	font-size: 18px;
+	box-shadow: 3px 3px #696969;
 }
 
 #form { 
