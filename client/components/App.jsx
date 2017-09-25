@@ -45,7 +45,7 @@ class App extends React.Component {
       return (
         <div style={{ textAlign: 'center', position: 'absolute', top: '25%', left: '50%' }}>
           <h3>Loading</h3>
-          <Spinner />
+          <Spinner /> 
         </div>
       );
     }
