@@ -4,12 +4,11 @@ import { Spinner } from '@blueprintjs/core';
 import { app } from '../base.jsx';
 
 class Logout extends Component {
-
   constructor() {
     super();
     this.state = {
       redirect: false,
-    }
+    };
   }
 
   componentWillMount() {
@@ -20,15 +19,15 @@ class Logout extends Component {
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to='/' />
+      return <Redirect to='/login' />
     }
     return (
-      <div style={{ textAlign: "center", position: "absolute", top: "25%", left: "50%" }}>
+      <div style={{ textAlign: 'center', position: 'absolute', top: '25%', left: '50%' }}>
         <h3>Logging Out</h3>
         <Spinner /> 
       </div>
     );
-  };
+  }
 }
 
 export default Logout;
