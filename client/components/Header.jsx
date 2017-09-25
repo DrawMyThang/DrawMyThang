@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
   render() {
     return (
-      <nav className="pt-navbar">
+      <nav className="pt-navbar pt-dark">
         <div className="pt-navbar-group pt-align-left">
           <div className="pt-navbar-heading">DRAW THIS THANG</div>
           {/* {this.props.authenticated

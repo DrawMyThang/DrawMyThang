@@ -40,15 +40,37 @@ class Login extends Component {
 
   authWithEmailPassword(event) {
     event.preventDefault();
-    console.log("Authed with email");
-    console.table([{
-      email: this.emailInput.value,
-      password: this.passwordInput.value,
-    }]);
+
+    const email = this.emailInput.value;
+    const password = this.passwordInput.value;
+
+    app.auth().fetchProvidersForEmail(email)
+      .then((providers) => {
+        if (providers.length === 0) {
+          // create user
+          return app.auth().createUserWithEmailAndPassword(email, password);
+        } else if (providers.indexOf('password') === -1) {
+          // they used facebook
+          this.loginForm.reset();
+          this.toaster.show({ intent: Intent.WARNING, message: 'You have already created an account.'});
+        } else {
+          // sign user in
+          return app.auth().signInWithEmailAndPassword(email, password); 
+        }
+      })
+      .then((user) => {
+        if (user && user.email) {
+          this.loginForm.reset();
+          this.setState({redirect: true});
+        }
+      })
+      .catch((error) => {
+        this.toaster.show({ intent: Intent.DANGER, message: error.message});
+      });
+
   }
 
   render() {
-
     if (this.state.redirect === true) {
       return <Redirect to='/' />
     }
@@ -79,7 +101,7 @@ class Login extends Component {
         </form>
       </div>
     );
-  };
+  }
 }
 
 export default Login;

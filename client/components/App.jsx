@@ -41,14 +41,13 @@ class App extends React.Component {
   }
 
   render() {
-
     if (this.state.loading === true) {
       return (
-        <div style={{ textAlign: "center", position: "absolute", top: "25%", left: "50%" }}>
+        <div style={{ textAlign: 'center', position: 'absolute', top: '25%', left: '50%' }}>
           <h3>Loading</h3>
           <Spinner />
         </div>
-      )
+      );
     }
 
     return (
@@ -56,8 +55,8 @@ class App extends React.Component {
         <BrowserRouter>
           <div>
             <Header authenticated={this.state.authenticated} />
-            <div className="main-content" style={{padding: "1rem"}}>
-              <div className="workspace">
+            <div className="main-content" style={{padding: "1rem"}} >
+              <div className="workspace" >
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/logout" component={Logout} />
               </div>
@@ -73,7 +72,7 @@ class App extends React.Component {
       </div>
       </div>
     );
-  };
+  }
 }
 
 export default App;
