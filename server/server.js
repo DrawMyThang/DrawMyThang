@@ -24,6 +24,10 @@ const userArr = [];
 io.on('connection', (socks) => {
   console.log('user is connected id:', socks.id);
 
+	socks.on('drawing', (drawData) => {
+		io.emit('drawing', drawData);
+	});
+
   socks.on('chat message', (msg) => {
     console.log('message: ', msg, 'id: ', socks.id);
     io.emit('chat message', msg);
