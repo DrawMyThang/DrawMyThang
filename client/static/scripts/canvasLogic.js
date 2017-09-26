@@ -37,15 +37,19 @@ $(document).ready(function(){
         currentPos.y = e.clientY;
     }
     var onMouseUp = () => {
-        enableDraw = false;
+        if (enableDraw) { 
+            enableDraw = false;
+            drawLine(currentPos.x - leftOffSet, currentPos.y - topOffSet
+            , e.clientX - leftOffSet, e.clientY - topOffSet);
+        }
     }
 
     var onMouseMove = (e) => {
         if (enableDraw) {
-        drawLine(currentPos.x - leftOffSet, currentPos.y - topOffSet
-        , e.clientX - leftOffSet, e.clientY - topOffSet);
-        currentPos.x = e.clientX;
-        currentPos.y = e.clientY;
+            drawLine(currentPos.x - leftOffSet, currentPos.y - topOffSet
+            , e.clientX - leftOffSet, e.clientY - topOffSet);
+            currentPos.x = e.clientX;
+            currentPos.y = e.clientY;
         }
     }
 
