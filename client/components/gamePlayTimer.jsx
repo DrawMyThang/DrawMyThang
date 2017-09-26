@@ -12,10 +12,13 @@ export default class GamePlayTimer extends React.Component{
 		this.connectSocket = this.connectSocket.bind(this);
 	}
 
-	connectSocket(){
+	componentDidMount(){
 		this.socket = socket('http://localhost:8080');
+		this.socket.on('timer', this.handleTimer)
+	}
+
+	connectSocket(){
 		this.socket.emit('timer');
-    this.socket.on('timer', this.handleTimer);
 	}
 
 	handleTimer(time){
