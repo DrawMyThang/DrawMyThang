@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb://127.0.0.1:27017/test';
-
+const dbURI = require('../env/mongodb.config.js');
 const easy = require('./words/easy.json');
 const medium = require('./words/medium.json');
 const hard = require('./words/hard.json');
 const spicy = require('./words/spicy.json');
 
-console.log(easy);
+const options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
+                  replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 
-mongoose.connect(mongoDB, { 
-  useMongoClient: true
+const mongodbURI = process.env.dbURI || dbURI;
+mongoose.connect(mongodbURI, {
+  useMongoClient: true,
+  promiseLibrary: global.Promise
 });
 
 const db = mongoose.connection;

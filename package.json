@@ -7,7 +7,7 @@
     "start": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --content-base client/static/",
-    "build": "webpack --progress",
+    "build": "webpack --progress --watch",
     "lint": "eslint --cache --ext .jsx,.js ./"
   },
   "repository": {

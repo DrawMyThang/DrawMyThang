@@ -9,3 +9,4 @@ node_modules
 bundle.js
 
 env/base.jsx
+env/mongodb.config.js
