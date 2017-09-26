@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    var socket = io();
     var canvas = document.getElementById("draw-comp");
     var context = canvas.getContext('2d');
     context.canvas.height = canvas.clientHeight;
@@ -14,7 +15,7 @@ $(document).ready(function(){
     var currentPos = {};
 
     var drawLine = (x0, y0, x1, y1) => {
-        //console.log(x1, y1);
+
         context.beginPath();
         context.moveTo(x0, y0);
         context.lineTo(x1, y1);
@@ -22,6 +23,13 @@ $(document).ready(function(){
         context.lineWidth = 2;
         context.stroke();
         context.closePath();
+
+        socket.emit('drawing', {
+            x0: x0,
+            y0: y0,
+            x1: x1,
+            y1: y1, 
+        });
     }
     var onMouseDown = (e) => {
         enableDraw = true;
@@ -41,13 +49,19 @@ $(document).ready(function(){
         }
     }
 
-    function onResize() {
+    var onResize = () => {
         console.log(context.canvas);
     }
+
+    var onDrawingEvent = (data) => {
+        drawLine(data.x0, data.y0, data.x1, data.y1);
+    };
+
     canvas.addEventListener('click', detectClick, false);
     canvas.addEventListener('mousemove', onMouseMove, false);
     canvas.addEventListener('mousedown', onMouseDown, false);
     canvas.addEventListener('mouseup', onMouseUp, false);
     window.addEventListener('resize', onResize, false);
+    socket.on('drawing', onDrawingEvent);
     
 });
