@@ -2,6 +2,11 @@
 we're gonna draw that thang
 
 ### Set up this thang.
+npm install
+npm run build
+npm start
+go to localhost:8080
+
 This project requires [firebase](https://firebase.google.com/)
 
 Using base.example.jsx as a template create a new file called base.jsx. Include your super duper awesome firebase configuration.
