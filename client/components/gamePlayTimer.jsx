@@ -14,6 +14,7 @@ export default class GamePlayTimer extends React.Component{
 
 	connectSocket(){
 		this.socket = socket('http://localhost:8080');
+		this.socket.emit('timer');
     this.socket.on('timer', this.handleTimer);
 	}
 
@@ -27,7 +28,7 @@ export default class GamePlayTimer extends React.Component{
 		return(
 
 			<div>
-				<div id="gamePlayTimer" >Game Play Timer: {this.state.time} </div>
+				<div id="gamePlayTimer">Game Play Timer: {this.state.time} </div>
 				<button id="gamePlayTimerButton" onClick={this.connectSocket}> Click to Start Timer </button>
 			</div>
 

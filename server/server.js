@@ -20,13 +20,13 @@ const io = socket(server);
 
 const userArr = [];
 
-let countdown = 100; 
+// let countdown = 100; 
 
-setInterval(() => {  
-  countdown--;
-  console.log(countdown, "countdown")
-  io.emit('timer', countdown);
-}, 1000);
+// setInterval(() => {  
+//   countdown--;
+//   console.log(countdown, "countdown")
+//   io.emit('timer', countdown);
+// }, 1000);
 
 io.on('connection', (socks) => {
   console.log('user is connected id:', socks.id);
@@ -48,9 +48,31 @@ io.on('connection', (socks) => {
     console.log("user id emitting", userArr)
   });
 
-  socks.on('reset', function (data) {
-    countdown = 60;
-    io.sockets.emit('timer', countdown);
+  socks.on('timer', function (data) {
+    console.log('here in timer')
+    let countdown = 6;
+    let count = 0;
+    const setInt = setInterval(() => {  
+      countdown--;
+      if (countdown === -1 && count === 0) {
+        count = 1;
+        countdown = 60;
+        
+        //countdown = 60;
+      } else if ( countdown === -1 && count > 0){
+        countdown = "stop"
+        myStopFunction()
+      }
+      console.log(countdown, "countdown")
+      io.emit('timer', countdown);
+      }, 1000);
+
+    const myStopFunction = () => {
+    clearInterval(setInt);
+  }
+
+
+
   });
  
 
