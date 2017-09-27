@@ -1,7 +1,6 @@
 import { Spinner } from '@blueprintjs/core';
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import socket from 'socket.io-client';
 import Header from './Header.jsx';
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
@@ -26,7 +25,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-		this.socket = socket('http://localhost:8080');
+		
 	}
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {

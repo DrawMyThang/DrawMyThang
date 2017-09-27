@@ -1,5 +1,4 @@
 import React from 'react';
-import socket from 'socket.io-client';
 
 export default class ChatBox extends React.Component {
   constructor(props) {
@@ -27,7 +26,7 @@ export default class ChatBox extends React.Component {
   }
 
   handleChat() {
-    this.socket.emit('chat message', this.message);
+    this.props.socket.emit('chat message', this.message);
     document.getElementById('m').value = null;
   }
 
