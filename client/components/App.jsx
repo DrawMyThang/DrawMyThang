@@ -8,7 +8,7 @@ import ChatBox from './chatBox.jsx';
 import Canvas from './canvas.jsx';
 import UserBox from './userBox.jsx';
 import GamePlayTimer from './gamePlayTimer.jsx'
-import { app, base } from '../base.jsx';
+import { app, base } from '../../env/base.jsx';
 
 //import openSocket from 'socket.io-client';
 

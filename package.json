@@ -7,7 +7,7 @@
     "start": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --content-base client/static/",
-    "build": "webpack --progress",
+    "build": "webpack --progress --watch",
     "lint": "eslint --cache --ext .jsx,.js ./"
   },
   "repository": {
@@ -41,6 +41,7 @@
     "@blueprintjs/core": "^1.28.0",
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
+    "mongoose": "^4.11.13",
     "normalize.css": "^7.0.0",
     "re-base": "^3.0.3",
     "react": "^15.6.1",
