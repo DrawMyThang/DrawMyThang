@@ -1,13 +1,13 @@
 const express = require('express');
 const path = require('path');
 const socket = require('socket.io');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 const app = express();
 
 const port = 8080;
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/static')));
 
 const server = app.listen(port, () => {
@@ -21,7 +21,6 @@ const io = socket(server);
 const userArr = [];
 
 io.on('connection', (socks) => {
-  console.log('user is connected id:', socks.id);
 
 	socks.on('drawing', (drawData) => {
 		io.emit('drawing', drawData);
@@ -69,8 +68,6 @@ io.on('connection', (socks) => {
       userArr.splice(userArr.indexOf(socks.id), 1)
       io.emit('disconnect', userArr)
     }
-    console.log(userArr, "userArr after disconnect")
-    console.log('user ', socks.id, ' disconnected');
   });
 
 
