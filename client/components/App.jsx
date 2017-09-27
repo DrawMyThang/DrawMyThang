@@ -7,6 +7,7 @@ import Logout from './Logout.jsx';
 import ChatBox from './chatBox.jsx';
 import Canvas from './canvas.jsx';
 import UserBox from './userBox.jsx';
+import GamePlayTimer from './gamePlayTimer.jsx'
 import { app, base } from '../base.jsx';
 
 //import openSocket from 'socket.io-client';
@@ -63,6 +64,7 @@ class App extends React.Component {
             </div>
           </div>
         </BrowserRouter>
+        <GamePlayTimer/>
       <div id="whole">
         <section className="sidebar">
           <UserBox />
