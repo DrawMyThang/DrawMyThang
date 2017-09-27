@@ -18,27 +18,30 @@ const PORT = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, '../client/static')));
 
 const userArr = [];
+var assignUser = 0;
+var artist = 0;
 
 io.on('connection', (socks) => {
-
+	userArr.push(socks.id);
+	console.log(socks.id, 'userArr');
+	
+	io.emit('client id', userArr[assignUser]);
 	socks.on('drawing', (drawData) => {
 		io.emit('drawing', drawData);
 	});
 
   socks.on('chat message', (msg) => {
-    console.log('message: ', msg, 'id: ', socks.id);
+    //console.log('message: ', msg, 'id: ', socks.id);
     io.emit('chat message', msg);
   });
 
   socks.on('user id', () => {
-    userArr.push(socks.id);
-    console.log(userArr, 'userArr');
-    io.emit('user id', userArr);
-    console.log("user id emitting", userArr);
+		io.emit('user id', userArr);
+    //console.log("user id emitting", userArr);
   });
 
   socks.on('timer', (data) => {
-    console.log('here in timer');
+    //console.log('here in timer');
     let countdown = 6;
     let count = 0;
     const setInt = setInterval(() => {  
@@ -46,12 +49,11 @@ io.on('connection', (socks) => {
       if (countdown === -1 && count === 0) {
         count = 1;
         countdown = 60;
-        //countdown = 60;
       } else if ( countdown === -1 && count > 0){
         countdown = "stop"
         myStopFunction();
       }
-      console.log(countdown, "countdown");
+      //console.log(countdown, "countdown");
       io.emit('timer', countdown);
       }, 1000);
 
@@ -61,13 +63,14 @@ io.on('connection', (socks) => {
   });
  
   socks.on('disconnect', () => {
-    if (userArr.includes(socks.id)) {
-      userArr.splice(userArr.indexOf(socks.id), 1);
+		var disconnectId = socks.id;
+    if (userArr.includes(disconnectId)) {
+      userArr.splice(userArr.indexOf(disconnectId), 1);
       io.emit('disconnect', userArr);
     }
 
     console.log(userArr, "userArr after disconnect");
-    console.log('user ', socks.id, ' disconnected');
+    console.log('user ', disconnectId, ' disconnected');
 
   });
 
