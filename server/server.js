@@ -19,10 +19,12 @@ app.use(express.static(path.join(__dirname, '../client/static')));
 
 const userArr = [];
 var artist = 0;
+var flag = false;
 
 io.on('connection', (socks) => {
 	userArr.push(socks.id);
-	console.log(socks.id, 'userArr');
+	console.log(socks.id, 'socks.id');
+  console.log(userArr, 'userArr')
 	
 	socks.on('choose artist', () => {
 		io.emit('choose artist', userArr[artist]);
@@ -44,11 +46,13 @@ io.on('connection', (socks) => {
 
   socks.on('user id', () => {
 		io.emit('user id', userArr);
-    //console.log("user id emitting", userArr);
   });
 
-  socks.on('timer', (data) => {
-    //console.log('here in timer');
+
+  if (userArr.length === 3 && flag===false){
+    flag = true;
+    console.log(userArr, 'userArr in timer')
+    console.log('here in timer');
     let countdown = 6;
     let count = 0;
     const setInt = setInterval(() => {  
@@ -60,14 +64,15 @@ io.on('connection', (socks) => {
         countdown = "stop"
         myStopFunction();
       }
-      //console.log(countdown, "countdown");
       io.emit('timer', countdown);
       }, 1000);
 
     const myStopFunction = () => {
+      flag = false;
       clearInterval(setInt);
     }
-  });
+}
+   
  
   socks.on('disconnect', () => {
 		var disconnectId = socks.id;
