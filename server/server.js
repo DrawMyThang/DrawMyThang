@@ -22,9 +22,7 @@ var artist = 0;
 var flag = false;
 
 io.on('connection', (socks) => {
-	userArr.push(socks.id);
-	console.log(socks.id, 'socks.id');
-  console.log(userArr, 'userArr')
+	
 	
 	socks.on('choose artist', () => {
 		io.emit('choose artist', userArr[artist]);
@@ -36,6 +34,7 @@ io.on('connection', (socks) => {
 	});
 
 	socks.on('drawing', (drawData) => {
+    //console.log(socks.id, 'drawing id socks')
 		io.emit('drawing', drawData);
 	});
 
@@ -45,14 +44,18 @@ io.on('connection', (socks) => {
   });
 
   socks.on('user id', () => {
+    userArr.push(socks.id);
+    //console.log(socks.id, 'socks.id');
+    //console.log(userArr, 'userArr')
 		io.emit('user id', userArr);
   });
 
 
-  if (userArr.length === 3 && flag===false){
+  if (userArr.length === 2 && flag===false){
+    //console.log(socks.id, 'timer id ')
     flag = true;
-    console.log(userArr, 'userArr in timer')
-    console.log('here in timer');
+    //console.log(userArr, 'userArr in timer')
+    //console.log('here in timer');
     let countdown = 6;
     let count = 0;
     const setInt = setInterval(() => {  
@@ -81,8 +84,8 @@ io.on('connection', (socks) => {
       io.emit('disconnect', userArr);
     }
 
-    console.log(userArr, "userArr after disconnect");
-    console.log('user ', disconnectId, ' disconnected');
+    //console.log(userArr, "userArr after disconnect");
+    //console.log('user ', disconnectId, ' disconnected');
 
   });
 
