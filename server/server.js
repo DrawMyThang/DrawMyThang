@@ -49,6 +49,9 @@ io.on('connection', (socks) => {
 
   socks.on('timer', (data) => {
     //console.log('here in timer');
+
+  if (userArr.length >= 2){
+    console.log('here in timer');
     let countdown = 6;
     let count = 0;
     const setInt = setInterval(() => {  
@@ -67,7 +70,8 @@ io.on('connection', (socks) => {
     const myStopFunction = () => {
       clearInterval(setInt);
     }
-  });
+  }
+   
  
   socks.on('disconnect', () => {
 		var disconnectId = socks.id;
