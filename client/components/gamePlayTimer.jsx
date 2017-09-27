@@ -30,7 +30,7 @@ export default class GamePlayTimer extends React.Component{
 		return(
 
 			<div>
-				<div id="gamePlayTimer">Game Play Timer: {this.state.time} </div>
+				<h3 id="gamePlayTimer">Game Play Timer: {this.state.time} </h3>
 				<button id="gamePlayTimerButton" onClick={this.connectSocket}> Click to Start Timer </button>
 			</div>
 

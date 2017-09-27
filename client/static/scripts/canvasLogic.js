@@ -54,7 +54,7 @@ $(document).ready(function(){
         drawLine(data.x0, data.y0, data.x1, data.y1);
     };
 
-    function throttle(callback, delay) {
+    var throttle = (callback, delay) => {
         var previousCall = new Date().getTime();
         return function() {
           var time = new Date().getTime();
@@ -66,7 +66,7 @@ $(document).ready(function(){
         };
     }
 
-    canvas.addEventListener('mousemove', throttle(onMouseMove, 50), false);
+    canvas.addEventListener('mousemove', throttle(onMouseMove, 20), false);
     canvas.addEventListener('mousedown', onMouseDown, false);
     canvas.addEventListener('mouseup', onMouseUp, false);
     socket.on('drawing', onDrawingEvent);
