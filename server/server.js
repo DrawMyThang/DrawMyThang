@@ -40,7 +40,7 @@ io.on('connection', (socks) => {
 
   socks.on('chat message', (msg) => {
     //console.log('message: ', msg, 'id: ', socks.id);
-    io.emit('chat message', msg);
+    io.emit('chat message', socks.id + ": " + msg);
   });
 
   socks.on('user id', () => {
