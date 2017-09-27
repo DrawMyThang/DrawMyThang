@@ -8,9 +8,9 @@ export default class GamePlayTimer extends React.Component{
 			time: "",
 			users: 0,
 			players: "players",
-			declaration: ""
+			declaration: "",
+			count: 0
 		}
-		this.count = 0;
 		this.handleTimer = this.handleTimer.bind(this);
 		this.handleUserNumber = this.handleUserNumber.bind(this)
 		this.handlePlayers = this.handlePlayers.bind(this)
@@ -30,13 +30,13 @@ export default class GamePlayTimer extends React.Component{
 
 
 	handleTimer(time){
-		if (this.count < 25){
-			this.count++;
+		if (this.state.count < 25){
 			this.setState({
 				time: time,
-				declaration: "Get Ready In: "
+				declaration: "Get Ready In: ",
+				count: this.state.count+=1
 			})
-		} else if (this.count >= 25){
+		} else if (this.state.count >= 25){
 			this.setState({
 				time: time,
 				declaration: "GamePlayTimer: "
