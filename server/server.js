@@ -18,14 +18,21 @@ const PORT = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, '../client/static')));
 
 const userArr = [];
-var assignUser = 0;
 var artist = 0;
 
 io.on('connection', (socks) => {
 	userArr.push(socks.id);
 	console.log(socks.id, 'userArr');
 	
-	io.emit('client id', userArr[assignUser]);
+	socks.on('choose artist', () => {
+		io.emit('choose artist', userArr[artist]);
+		if(artist + 1 >= userArr.length) {
+			artist = 0;
+		} else {
+			artist++;
+		}
+	});
+
 	socks.on('drawing', (drawData) => {
 		io.emit('drawing', drawData);
 	});
