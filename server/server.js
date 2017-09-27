@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, '../client/static')));
 
 const userArr = [];
 var artist = 0;
+var flag = false;
 
 io.on('connection', (socks) => {
 	userArr.push(socks.id);
@@ -47,7 +48,8 @@ io.on('connection', (socks) => {
   });
 
 
-  if (userArr.length === 3){
+  if (userArr.length === 3 && flag===false){
+    flag = true;
     console.log(userArr, 'userArr in timer')
     console.log('here in timer');
     let countdown = 6;
@@ -65,6 +67,7 @@ io.on('connection', (socks) => {
       }, 1000);
 
     const myStopFunction = () => {
+      flag = false;
       clearInterval(setInt);
     }
 }

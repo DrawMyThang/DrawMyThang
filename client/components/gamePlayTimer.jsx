@@ -26,17 +26,18 @@ export default class GamePlayTimer extends React.Component{
 		//this.props.socket.on('user id', this.handleUserNumber);
 
 	handleTimer(time){
-		console.log(time, 'time in handletime')
-		if (this.state.count < 25){
+		console.log(this.state.count, 'count')
+		if (this.state.count < 5){
 			this.setState({
 				time: time,
 				declaration: "Get Ready In: ",
 				count: this.state.count+=1
 			})
-		} else if (this.state.count >= 25){
+		} else if (this.state.count >= 5){
 			this.setState({
 				time: time,
-				declaration: "GamePlayTimer: "
+				declaration: "GamePlayTimer: ",
+				count: 5
 			})
 		}
 	}

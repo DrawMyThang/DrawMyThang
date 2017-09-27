@@ -10,6 +10,7 @@ import Canvas from './canvas.jsx';
 import UserBox from './userBox.jsx';
 import GamePlayTimer from './gamePlayTimer.jsx'
 import { app, base } from '../../env/base.jsx';
+import socket from 'socket.io-client'
 
 
 //import openSocket from 'socket.io-client';
