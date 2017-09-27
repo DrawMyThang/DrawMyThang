@@ -7,8 +7,9 @@ import Logout from './Logout.jsx';
 import ChatBox from './chatBox.jsx';
 import Canvas from './canvas.jsx';
 import UserBox from './userBox.jsx';
+import socket from 'socket.io-client';
 import GamePlayTimer from './gamePlayTimer.jsx'
-import { app, base } from '../base.jsx';
+import { app, base } from '../../env/base.jsx';
 
 //import openSocket from 'socket.io-client';
 
@@ -18,6 +19,7 @@ class App extends React.Component {
     this.state = {
       authenticated: false,
       loading: true,
+      socket: socket('http://localhost:8080'),
     };
   }
 
@@ -64,11 +66,11 @@ class App extends React.Component {
             </div>
           </div>
         </BrowserRouter>
-        <GamePlayTimer/>
+        <GamePlayTimer socket={this.state.socket}/>
       <div id="whole">
         <section className="sidebar">
-          <UserBox />
-          <ChatBox />
+          <UserBox socket={this.state.socket} />
+          <ChatBox socket={this.state.socket} />
         </section>
         <Canvas />
       </div>

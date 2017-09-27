@@ -70,5 +70,7 @@ $(document).ready(function(){
     canvas.addEventListener('mousedown', onMouseDown, false);
     canvas.addEventListener('mouseup', onMouseUp, false);
     socket.on('drawing', onDrawingEvent);
-    
+    socket.on('client id', (clientId) => {
+        console.log(clientId);
+    })
 });

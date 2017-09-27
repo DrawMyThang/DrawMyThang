@@ -17,8 +17,7 @@ export default class ChatBox extends React.Component {
   }
 
   componentDidMount() {
-    this.socket = socket('http://localhost:8080');
-    this.socket.on('chat message', this.chatMessage);
+    this.props.socket.on('chat message', this.chatMessage);
   }
 
   chatMessage(text) {

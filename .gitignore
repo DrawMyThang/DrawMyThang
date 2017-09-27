@@ -8,4 +8,5 @@ node_modules
 *.eot
 bundle.js
 
-client/base.jsx
+env/base.jsx
+env/mongodb.config.js

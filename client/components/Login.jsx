@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Toaster, Intent } from '@blueprintjs/core';
 
-import { app, githubProvider } from '../base.jsx';
+import { app, githubProvider } from '../../env/base.jsx';
 
 const loginStyles = {
   width: "90%",
