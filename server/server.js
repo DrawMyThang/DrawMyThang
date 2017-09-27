@@ -1,7 +1,12 @@
 const express = require('express');
 const path = require('path');
+
 const bodyParser = require('body-parser');
 const db = require('../db/db.js');
+
+const socket = require('socket.io');
+//const bodyParser = require('body-parser');
+
 
 // express app and socket.io instantiation
 const app = express();
@@ -9,13 +14,12 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const PORT = process.env.PORT || 8080;
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/static')));
 
 const userArr = [];
 
 io.on('connection', (socks) => {
-  console.log('user is connected id:', socks.id);
 
 	socks.on('drawing', (drawData) => {
 		io.emit('drawing', drawData);
@@ -61,8 +65,10 @@ io.on('connection', (socks) => {
       userArr.splice(userArr.indexOf(socks.id), 1);
       io.emit('disconnect', userArr);
     }
+
     console.log(userArr, "userArr after disconnect");
     console.log('user ', socks.id, ' disconnected');
+
   });
 
 });
