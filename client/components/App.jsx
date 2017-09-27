@@ -24,9 +24,6 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount(){
-		
-	}
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
