@@ -1,10 +1,9 @@
 import App from './App.jsx'
 import React from 'react'
-import socket from 'socket.io-client';
 
 export default class GamePlayTimer extends React.Component{
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 		this.state = {
 			time: "not started",
 		}
@@ -17,7 +16,8 @@ export default class GamePlayTimer extends React.Component{
 	}
 
 	connectSocket(){
-		this.socket.emit('timer');
+		console.log(this.props);
+		this.props.socket.emit('timer');
 	}
 
 	handleTimer(time){
