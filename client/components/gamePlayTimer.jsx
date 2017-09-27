@@ -17,8 +17,6 @@ export default class GamePlayTimer extends React.Component{
 	}
 
 	componentDidMount(){
-
-
 		this.props.socket.on('timer', this.handleTimer);
 	}
 
@@ -26,8 +24,6 @@ export default class GamePlayTimer extends React.Component{
 		this.props.socket.emit('timer');
 	}
 		//this.props.socket.on('user id', this.handleUserNumber);
-
-
 
 	handleTimer(time){
 		if (this.state.count < 25){
