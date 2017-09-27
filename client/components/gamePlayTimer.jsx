@@ -10,12 +10,14 @@ export default class GamePlayTimer extends React.Component{
 			players: "players",
 			declaration: ""
 		}
+		this.count = 0;
 		this.handleTimer = this.handleTimer.bind(this);
 		this.handleUserNumber = this.handleUserNumber.bind(this)
 		this.handlePlayers = this.handlePlayers.bind(this)
 	}
 
 	componentDidMount(){
+
 
 		this.props.socket.on('timer', this.handleTimer);
 	}
@@ -26,10 +28,20 @@ export default class GamePlayTimer extends React.Component{
 		//this.props.socket.on('user id', this.handleUserNumber);
 
 
+
 	handleTimer(time){
-		this.setState({
-			time: time
-		})
+		if (this.count < 25){
+			this.count++;
+			this.setState({
+				time: time,
+				declaration: "Get Ready In: "
+			})
+		} else if (this.count >= 25){
+			this.setState({
+				time: time,
+				declaration: "GamePlayTimer: "
+			})
+		}
 	}
 
 	handleUserNumber(user){
@@ -44,20 +56,18 @@ export default class GamePlayTimer extends React.Component{
 		if (this.state.users < 2){
 			this.setState({
 				players: "players",
-				declaration: `GamePlayTimer: ${this.state.time} Need ${3- this.state.users} more ${this.state.players}`
+				declaration: `${this.state.time} Need ${3- this.state.users} more ${this.state.players} to start`
 			})
 		} else if (this.state.users === 2){
 			this.setState({
-				declaration: `GamePlayTimer: ${this.state.time} Need ${3- this.state.users} more player`
+				declaration: `${this.state.time} Need ${3- this.state.users} more player to start `
 			})
-		} else {
+		} else if (this.state.users > 2){
 			this.setState({
-				declaration: "GamePlayTimer: "
+				declaration: "Get Ready In: "
 			})
-		}
+		} 
 	}
-
-
 
 	render(){
 		return(
