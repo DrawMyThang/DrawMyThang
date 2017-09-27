@@ -16,7 +16,6 @@ export default class GamePlayTimer extends React.Component{
 	}
 
 	connectSocket(){
-		console.log(this.props);
 		this.props.socket.emit('timer');
 	}
 

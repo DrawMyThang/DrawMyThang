@@ -2,10 +2,10 @@ import React from 'react';
 import socket from 'socket.io-client';
 
 class Canvas extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
-    // this.socket;
+    // this.socket = io();
     // this.canvas;
     // this.context;
 
@@ -23,7 +23,7 @@ class Canvas extends React.Component {
   }
 
   componentDidMount() {
-    this.socket = io();
+    // this.socket = io();
 
     this.canvas = document.getElementById("draw-comp");
     this.context = this.canvas.getContext('2d');
@@ -35,10 +35,10 @@ class Canvas extends React.Component {
     this.enableDraw = false;
     this.currentPos = {};
 
-    this.canvas.addEventListener('mousemove', this.throttle(this.onMouseMove, 20), false);
+    this.canvas.addEventListener('mousemove', this.throttle(this.onMouseMove, 10), false);
     this.canvas.addEventListener('mousedown', this.onMouseDown, false);
     this.canvas.addEventListener('mouseup', this.onMouseUp, false);
-    this.socket.on('drawing', this.onDrawingEvent);
+    this.props.socket.on('drawing', this.onDrawingEvent);
   }
 
   drawLine(x0, y0, x1, y1, emit) {
@@ -51,7 +51,7 @@ class Canvas extends React.Component {
     this.context.stroke();
     this.context.closePath();
     if (emit) {
-      this.socket.emit('drawing', {
+      this.props.socket.emit('drawing', {
         x0: x0,
         y0: y0,
         x1: x1,
