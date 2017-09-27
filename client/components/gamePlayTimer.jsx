@@ -37,7 +37,7 @@ export default class GamePlayTimer extends React.Component{
 			this.setState({
 				time: time,
 				declaration: "GamePlayTimer: ",
-				count: 5
+				count: 6
 			})
 		}
 	}

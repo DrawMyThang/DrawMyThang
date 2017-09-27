@@ -23,7 +23,8 @@ var flag = false;
 
 io.on('connection', (socks) => {
 	userArr.push(socks.id);
-	console.log(socks.id, 'userArr');
+	console.log(socks.id, 'socks.id');
+  console.log(userArr, 'userArr')
 	
 	socks.on('choose artist', () => {
 		io.emit('choose artist', userArr[artist]);
