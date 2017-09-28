@@ -14,7 +14,6 @@ class Worddisplay extends React.Component {
 	}
 
 	showWord(data) {
-		console.log('word data', data);
 		if (this.props.uid === data.uid) {
 			this.setState({
 				word: data.word,

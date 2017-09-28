@@ -69,6 +69,7 @@ io.on('connection', (socks) => {
         countdown = 6;
         count = 0;
         // myStopFunction();
+        io.emit('clear canvas');
       }
       io.emit('timer', countdown);
       }, 100);
@@ -98,7 +99,6 @@ io.on('connection', (socks) => {
     } else {
       artist++;
     }
-    console.log('current artis ', usernames_uid[keys[artist]].uid);
   });
 
   socks.on('drawing', (drawData) => {

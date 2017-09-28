@@ -14,6 +14,7 @@ class Canvas extends React.Component {
     this.onDrawingEvent = this.onDrawingEvent.bind(this);
     this.throttle = this.throttle.bind(this);
     this.isArtist = this.isArtist.bind(this);
+    this.wipeCanvas = this.wipeCanvas.bind(this);
     // this.handleClick = this.handleClick.bind(this);
   }
 
@@ -33,6 +34,7 @@ class Canvas extends React.Component {
     this.canvas.addEventListener('mouseup', this.onMouseUp, false);
     this.props.socket.on('drawing', this.onDrawingEvent);
     this.props.socket.on('choose artist', this.isArtist);
+    this.props.socket.on('clear canvas', this.wipeCanvas);
   }
 
   isArtist(uid) {
@@ -60,6 +62,11 @@ class Canvas extends React.Component {
         y1: y1, 
       });
     }
+  }
+
+  wipeCanvas() {
+    this.context.clearRect(0, 0, this.context.canvas.width
+      ,this.context.canvas.height)
   }
 
   onMouseDown(e) {
