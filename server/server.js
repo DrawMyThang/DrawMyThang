@@ -23,17 +23,13 @@ const usernames_uid = {
     uid: 'second',
   }
 };
-const userArr = [];
+
 let numOfUsers = 2;
 var artist = 0;
 var flag = false;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/static')));
-
-app.get('/users', (req, res) => {
-  res.status(200).json(usernames_uid);
-});
 
 io.on('connection', (socks) => {
   
@@ -58,17 +54,26 @@ io.on('connection', (socks) => {
       if (countdown === -1 && count === 0) {
         count = 1;
         countdown = 60;
+        const keys = Object.keys(usernames_uid);
+        io.emit('choose artist', usernames_uid[keys[artist]].uid);
+        if(artist + 1 >= keys.length) {
+          artist = 0;
+        } else {
+          artist++;
+        }
+        console.log('artist ', usernames_uid[keys[artist]].uid);
       } else if ( countdown === -1 && count > 0){
-        countdown = "stop"
-        myStopFunction();
+        countdown = 6;
+        count = 0;
+        // myStopFunction();
       }
       io.emit('timer', countdown);
       }, 1000);
 
-    const myStopFunction = () => {
-      flag = false;
-      clearInterval(setInt);
-    }
+    // const myStopFunction = () => {
+    //   flag = false;
+    //   clearInterval(setInt);
+    // }
   }
 
   });
@@ -82,12 +87,15 @@ io.on('connection', (socks) => {
   });
   
   socks.on('choose artist', () => {
-    io.emit('choose artist', userArr[artist]);
-    if(artist + 1 >= userArr.length) {
+
+    const keys = Object.keys(usernames_uid);
+    io.emit('choose artist', usernames_uid[keys[artist]].uid);
+    if(artist + 1 >= keys.length) {
       artist = 0;
     } else {
       artist++;
     }
+    console.log('current artis ', usernames_uid[keys[artist]].uid);
   });
 
   socks.on('drawing', (drawData) => {

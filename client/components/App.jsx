@@ -89,7 +89,7 @@ class App extends React.Component {
           <UserBox socket={this.state.socket} />
           <ChatBox socket={this.state.socket} auth_user={this.state.user} />
         </section>
-        <Canvas socket={this.state.socket}/>
+        <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
       </div>
       </div>
     );
