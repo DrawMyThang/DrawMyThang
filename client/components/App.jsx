@@ -11,30 +11,39 @@ import GamePlayTimer from './gamePlayTimer.jsx'
 import { app, base } from '../../env/base.jsx';
 import socket from 'socket.io-client';
 
-
 //import openSocket from 'socket.io-client';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      user: {
+        displayName: '',
+        photoURL: null,
+        uid: '',
+      },
       authenticated: false,
       loading: true,
       socket: socket('http://localhost:8080'),
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
+        console.log(user);
 
         const user_id = {
           displayName: user.displayName,
           photourl: user.photoURL,
           uid: user.uid,
         }
-        this.socket.emit('add user', user_id);
+        if (!user.displayName) {
+          user_id.displayName = user.uid;
+        }
+        console.log('user id ', user_id);
         this.setState({
+          user: user_id,
           authenticated: true,
           loading: false,
         });
@@ -68,8 +77,8 @@ class App extends React.Component {
             <Header authenticated={this.state.authenticated} />
             <div className="main-content" style={{padding: "1rem"}} >
               <div className="workspace" >
-                <Route path="/login" render={() => <Login socket={this.state.socket} />} />
-                <Route path="/logout" component={Logout} />
+                <Route path="/login" render={() => <Login state={this.state} />} />
+                <Route path="/logout" render={() => <Logout state={this.state} />} />
               </div>
             </div>
           </div>
@@ -78,7 +87,7 @@ class App extends React.Component {
       <div id="whole">
         <section className="sidebar">
           <UserBox socket={this.state.socket} />
-          <ChatBox socket={this.state.socket} />
+          <ChatBox socket={this.state.socket} auth_user={this.state.user} />
         </section>
         <Canvas socket={this.state.socket}/>
       </div>

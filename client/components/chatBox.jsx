@@ -27,7 +27,11 @@ export default class ChatBox extends React.Component {
   }
 
   handleChat() {
-    this.props.socket.emit('chat message', this.message);
+    const usermsg = {
+      user: this.props.auth_user,
+      message: this.message,
+    };
+    this.props.socket.emit('chat message', usermsg);
     document.getElementById('m').value = null;
   }
 
@@ -41,7 +45,6 @@ export default class ChatBox extends React.Component {
       document.getElementById('chatButton').click();
     }
   }
-
 
   render(){
     return(

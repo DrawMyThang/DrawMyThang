@@ -8,36 +8,36 @@ export default class UserBox extends React.Component {
   	this.state = {
   		users: [],
   	}
-  	this.getUserId = this.getUserId.bind(this)
+    this.getUserId = this.getUserId.bind(this);
+    this.updateDisplayUsers = this.updateDisplayUsers.bind(this);
+    this.getUsers = this.getUsers.bind(this);
   }
 
   componentDidMount() {
-    fetch('/users', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin'
-    }).then(response => {
-      return response.json();
-    }).then(result => {
-      const usersArr = [];
-      for (let key in result) {
-        console.log('result at key ', result[key]);
-        if (result[key].displayName) {
-          usersArr.push(result[key].displayName);
-        } else {
-          usersArr.push(result[key].uid);
-        }
-      }
-      this.setState({
-        users: [...usersArr],
-      });
-    });
+    this.props.socket.on('get users', this.getUsers);
+    this.props.socket.emit('get users');
     this.props.socket.on('display users', this.getUserId);
+    this.props.socket.on('update display users', this.updateDisplayUsers);
   }
 
+  getUsers(result) {
+    const usersArr = [];
+    for (let key in result) {
+      // console.log('result at key ', result[key]);
+      if (result[key].displayName) {
+        usersArr.push(result[key].displayName);
+      } else {
+        usersArr.push(result[key].uid);
+      }
+    }
+    this.setState({
+      users: [...usersArr],
+    });
+  }
 
+  updateDisplayUsers(users) {
+    console.log(users);
+  }
 
   getUserId(user) {
     this.setState({
