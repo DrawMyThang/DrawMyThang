@@ -24,10 +24,6 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount(){
-		this.socket = socket('http://localhost:8080');
-	}
-
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {

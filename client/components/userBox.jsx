@@ -11,15 +11,7 @@ export default class UserBox extends React.Component {
   	this.getUserId = this.getUserId.bind(this)
   }
 
-
-  // componentWillMount() {
-  //   this.props.socket.on('user id', this.getUserId);
-  //   this.props.socket.on('disconnect', this.getUserId);
-  //   this.props.socket.emit('user id', this.state.users);
-  // }
-
   componentDidMount() {
-    // this.props.socket.emit('get users')
     fetch('/users', {
       method: 'GET',
       headers: {
@@ -48,14 +40,9 @@ export default class UserBox extends React.Component {
 
 
   getUserId(user) {
-  	// console.log(users, "users from get USERid ")
-    // console.log(this.state.users, "this.state.users")
-    console.log('did this thing happen', user);
     this.setState({
       users: [...this.state.users, user],
     });
-    // console.log(this.state.users, "this.state.users after set state")
-
   }
 
   render(){
