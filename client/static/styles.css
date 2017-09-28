@@ -153,6 +153,11 @@
 	padding: 0;
 }
 
+.userInChat{
+	color:black;
+	text-decoration: underline;
+}
+
 #messages li { 
 	padding: 5px 10px; 
 }
