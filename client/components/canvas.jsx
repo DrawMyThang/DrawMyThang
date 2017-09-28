@@ -2,18 +2,8 @@ import React from 'react';
 import socket from 'socket.io-client';
 
 class Canvas extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // this.socket;
-    // this.canvas;
-    // this.context;
-
-    // this.leftOffSet;
-    // this.topOffSet;
-    // this.enableDraw;
-    // this.currentPos;
-
+  constructor() {
+    super();
     this.drawLine = this.drawLine.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
@@ -23,8 +13,6 @@ class Canvas extends React.Component {
   }
 
   componentDidMount() {
-    this.socket = io();
-
     this.canvas = document.getElementById("draw-comp");
     this.context = this.canvas.getContext('2d');
     this.context.canvas.height = this.canvas.clientHeight;
@@ -35,10 +23,10 @@ class Canvas extends React.Component {
     this.enableDraw = false;
     this.currentPos = {};
 
-    this.canvas.addEventListener('mousemove', this.throttle(this.onMouseMove, 20), false);
+    this.canvas.addEventListener('mousemove', this.throttle(this.onMouseMove, 50), false);
     this.canvas.addEventListener('mousedown', this.onMouseDown, false);
     this.canvas.addEventListener('mouseup', this.onMouseUp, false);
-    this.socket.on('drawing', this.onDrawingEvent);
+    this.props.socket.on('drawing', this.onDrawingEvent);
   }
 
   drawLine(x0, y0, x1, y1, emit) {
@@ -51,7 +39,7 @@ class Canvas extends React.Component {
     this.context.stroke();
     this.context.closePath();
     if (emit) {
-      this.socket.emit('drawing', {
+      this.props.socket.emit('drawing', {
         x0: x0,
         y0: y0,
         x1: x1,
