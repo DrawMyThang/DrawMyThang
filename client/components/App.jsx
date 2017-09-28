@@ -9,7 +9,7 @@ import Canvas from './canvas.jsx';
 import UserBox from './userBox.jsx';
 import GamePlayTimer from './gamePlayTimer.jsx'
 import { app, base } from '../../env/base.jsx';
-import socket from 'socket.io-client'
+import socket from 'socket.io-client';
 
 
 //import openSocket from 'socket.io-client';
@@ -31,6 +31,13 @@ class App extends React.Component {
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
+
+        const user_id = {
+          displayName: user.displayName,
+          photourl: user.photoURL,
+          uid: user.uid,
+        }
+        this.socket.emit('add user', user_id);
         this.setState({
           authenticated: true,
           loading: false,
@@ -65,8 +72,8 @@ class App extends React.Component {
             <Header authenticated={this.state.authenticated} />
             <div className="main-content" style={{padding: "1rem"}} >
               <div className="workspace" >
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/logout" component={Logout} />
+                <Route path="/login" render={() => <Login socket={this.state.socket} />} />
+                <Route path="/logout" component={Logout} />
               </div>
             </div>
           </div>

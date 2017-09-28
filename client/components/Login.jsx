@@ -25,14 +25,21 @@ class Login extends Component {
   }
 
   authWithGithub() {
-    console.log("Authed with Github");
     app.auth().signInWithPopup(githubProvider)
       .then((result, error) => {
+        // console.log('github stuff ', result);
         if (error) {
           this.toaster.show({ 
             intent: Intent.DANGER, message: "Unable to login with Github" 
           });
         } else {
+          const user_id = { 
+            displayName: result.user.displayName,
+            photourl: result.user.photoURL,
+            uid: result.user.uid,
+          }
+          // console.log(this.props.socket.id);
+          this.props.socket.emit('connect user', user_id);
           this.setState({ redirect: true });
         }
       });
@@ -50,7 +57,7 @@ class Login extends Component {
           // create user
           return app.auth().createUserWithEmailAndPassword(email, password);
         } else if (providers.indexOf('password') === -1) {
-          // they used facebook
+          // they used github
           this.loginForm.reset();
           this.toaster.show({ intent: Intent.WARNING, message: 'You have already created an account.'});
         } else {
@@ -60,6 +67,14 @@ class Login extends Component {
       })
       .then((user) => {
         if (user && user.email) {
+          // console.log('what is user ', user);
+          // console.log('what is user email ', user.email);
+          const user_id = { 
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            uid: user.uid,
+          }
+          this.props.socket.emit('connect user', user_id);
           this.loginForm.reset();
           this.setState({redirect: true});
         }
