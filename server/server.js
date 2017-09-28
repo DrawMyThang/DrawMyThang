@@ -5,8 +5,6 @@ const bodyParser = require('body-parser');
 const db = require('../db/db.js');
 const utils = require('./utils/dictionaryapi.js');
 const socket = require('socket.io');
-//const bodyParser = require('body-parser');
-
 
 // express app and socket.io instantiation
 const app = express();
@@ -27,8 +25,6 @@ app.use(express.static(path.join(__dirname, '../client/static')));
 app.get('/users', (req, res) => {
   res.status(200).json(usernames_uid);
 });
-
-
 
 io.on('connection', (socks) => {
   
@@ -81,12 +77,9 @@ io.on('connection', (socks) => {
 
   socks.on('user id', () => {
     userArr.push(socks.id);
-    //console.log(socks.id, 'socks.id');
-    //console.log(userArr, 'userArr')
     io.emit('user id', userArr);
   });
 
-  // socks.on('total players')
 
   if (numOfUsers === 3 && flag===false){
     //console.log(socks.id, 'timer id ')
