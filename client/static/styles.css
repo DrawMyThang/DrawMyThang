@@ -27,12 +27,12 @@
 
 .userBox{
   font-size: 1.2em;
-  flex-grow: 1;
+  height:425px;
   background-color: lightgray;
 }
 
 .chatWrapper{
-  flex-grow: 1;
+  height:215px;
   width: 100%;
   max-width: 396px;
   border-radius: 5px;

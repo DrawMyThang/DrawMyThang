@@ -83,8 +83,8 @@ class App extends React.Component {
             </div>
           </div>
         </BrowserRouter>
-        <GamePlayTimer socket={this.state.socket}/>
       <div id="whole">
+        <GamePlayTimer socket={this.state.socket}/>
         <section className="sidebar">
           <UserBox socket={this.state.socket} />
           <ChatBox socket={this.state.socket} auth_user={this.state.user} />

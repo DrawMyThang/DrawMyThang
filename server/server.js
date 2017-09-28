@@ -24,7 +24,7 @@ const usernames_uid = {
   }
 };
 const userArr = [];
-let numOfUsers = 0;
+let numOfUsers = 2;
 var artist = 0;
 var flag = false;
 
@@ -46,7 +46,31 @@ io.on('connection', (socks) => {
       usernames_uid[user.uid] = user;
     }
     io.emit('display users', user.displayName);
-    numOfUsers++
+    numOfUsers++;
+    
+
+     if (numOfUsers === 3 && flag===false){
+    flag = true;
+    let countdown = 6;
+    let count = 0;
+    const setInt = setInterval(() => {  
+      countdown--;
+      if (countdown === -1 && count === 0) {
+        count = 1;
+        countdown = 60;
+      } else if ( countdown === -1 && count > 0){
+        countdown = "stop"
+        myStopFunction();
+      }
+      io.emit('timer', countdown);
+      }, 1000);
+
+    const myStopFunction = () => {
+      flag = false;
+      clearInterval(setInt);
+    }
+  }
+
   });
 
   socks.on('disconnect user', (user) => {
@@ -78,36 +102,13 @@ io.on('connection', (socks) => {
     }
   });
 
-  socks.on('user id', () => {
-    userArr.push(socks.id);
-    io.emit('user id', userArr);
+  socks.on('numOfUsers', () => { 
+    console.log(numOfUsers, 'numOfUsers')
+    io.emit('numOfUsers', numOfUsers);
   });
 
 
-  if (numOfUsers === 3 && flag===false){
-    //console.log(socks.id, 'timer id ')
-    flag = true;
-    //console.log(userArr, 'userArr in timer')
-    //console.log('here in timer');
-    let countdown = 6;
-    let count = 0;
-    const setInt = setInterval(() => {  
-      countdown--;
-      if (countdown === -1 && count === 0) {
-        count = 1;
-        countdown = 60;
-      } else if ( countdown === -1 && count > 0){
-        countdown = "stop"
-        myStopFunction();
-      }
-      io.emit('timer', countdown);
-      }, 1000);
-
-    const myStopFunction = () => {
-      flag = false;
-      clearInterval(setInt);
-    }
-  }
+ 
 
 });
 

@@ -18,12 +18,13 @@ export default class GamePlayTimer extends React.Component{
 
 	componentDidMount(){
 		this.props.socket.on('timer', this.handleTimer);
+		this.props.socket.on('numOfUsers', this.handleUserNumber);
+		this.props.socket.emit('numOfUsers');
 	}
 
 	connectSocket(){
 		this.props.socket.emit('timer');
 	}
-		//this.props.socket.on('user id', this.handleUserNumber);
 
 	handleTimer(time){
 		console.log(this.state.count, 'count')
