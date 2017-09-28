@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Spinner } from '@blueprintjs/core';
+import socket from 'socket.io-client';
 import { app } from '../../env/base.jsx';
 
 class Logout extends Component {
@@ -13,7 +14,9 @@ class Logout extends Component {
 
   componentWillMount() {
     app.auth().signOut().then((user) => {
-      console.log('disconnect ', user);
+      // console.log('disconnect ', user);
+      console.log('disconnect ', this.props.state.user);
+      this.props.state.socket.emit('disconnect user', this.props.state.user);
       this.setState({ redirect: true });
     });
   }

@@ -11,7 +11,18 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const PORT = process.env.PORT || 8080;
 
-const usernames_uid = {};
+const usernames_uid = {
+  first: {
+    displayName: 'leonardo',
+    photoURL: null,
+    uid: 'first',
+  },
+  second: {
+    displayName: 'donatello',
+    photoURL: null,
+    uid: 'second',
+  }
+};
 const userArr = [];
 let numOfUsers = 0;
 var artist = 0;
@@ -20,39 +31,30 @@ var flag = false;
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/static')));
 
-
 app.get('/users', (req, res) => {
   res.status(200).json(usernames_uid);
 });
 
 io.on('connection', (socks) => {
   
+  socks.on('get users', () => {
+    io.emit('get users', usernames_uid);
+  });
+
   socks.on('connect user', (user) => {
     if (!usernames_uid.hasOwnProperty(user.uid)) {
       usernames_uid[user.uid] = user;
     }
-
-    if (!user.displayName) {
-      io.emit('display users', user.uid);
-    } else {
-      io.emit('display users', user.displayName);
-    }
+    io.emit('display users', user.displayName);
     numOfUsers++
-    console.log('number of users ', numOfUsers);
-    // console.log('----------------');
-    // console.log(usernames_uid);
   });
 
-  socks.on('disconnect', () => {
-    var disconnectId = socks.id;
-    if (userArr.includes(disconnectId)) {
-      userArr.splice(userArr.indexOf(disconnectId), 1);
-      io.emit('disconnect', userArr);
+  socks.on('disconnect user', (user) => {
+    if (usernames_uid.hasOwnProperty(user.uid)) {
+      delete usernames_uid[user.uid];
+      numOfUsers--;
+      io.emit('get users', usernames_uid);
     }
-
-    //console.log(userArr, "userArr after disconnect");
-    //console.log('user ', disconnectId, ' disconnected');
-
   });
   
   socks.on('choose artist', () => {
@@ -69,9 +71,11 @@ io.on('connection', (socks) => {
     io.emit('drawing', drawData);
   });
 
-  socks.on('chat message', (msg) => {
+  socks.on('chat message', (data) => {
     //console.log('message: ', msg, 'id: ', socks.id);
-    io.emit('chat message', socks.id + ": " + msg);
+    if (data.user.uid !== '') {
+      io.emit('chat message', data.user.displayName + ": " + data.message);
+    }
   });
 
   socks.on('user id', () => {
@@ -104,18 +108,6 @@ io.on('connection', (socks) => {
       clearInterval(setInt);
     }
   }
-   
-  // socks.on('disconnect', () => {
-  // 	var disconnectId = socks.id;
-  //   if (userArr.includes(disconnectId)) {
-  //     userArr.splice(userArr.indexOf(disconnectId), 1);
-  //     io.emit('disconnect', userArr);
-  //   }
-
-  //   //console.log(userArr, "userArr after disconnect");
-  //   //console.log('user ', disconnectId, ' disconnected');
-
-  // });
 
 });
 

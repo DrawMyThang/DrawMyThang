@@ -38,8 +38,11 @@ class Login extends Component {
             photourl: result.user.photoURL,
             uid: result.user.uid,
           }
-          // console.log(this.props.socket.id);
-          this.props.socket.emit('connect user', user_id);
+          console.log('what is props ', this.state);
+          this.setState({
+            user: user_id,
+          });
+          this.props.state.socket.emit('connect user', user_id);
           this.setState({ redirect: true });
         }
       });
@@ -53,6 +56,7 @@ class Login extends Component {
 
     app.auth().fetchProvidersForEmail(email)
       .then((providers) => {
+        console.log('providers', this.state);
         if (providers.length === 0) {
           // create user
           return app.auth().createUserWithEmailAndPassword(email, password);
@@ -67,14 +71,16 @@ class Login extends Component {
       })
       .then((user) => {
         if (user && user.email) {
-          // console.log('what is user ', user);
-          // console.log('what is user email ', user.email);
+          
           const user_id = { 
-            displayName: user.displayName,
+            displayName: user.uid,
             photoURL: user.photoURL,
             uid: user.uid,
           }
-          this.props.socket.emit('connect user', user_id);
+          this.setState({
+            user: user_id,
+          });
+          this.props.state.socket.emit('connect user', user_id);
           this.loginForm.reset();
           this.setState({redirect: true});
         }
@@ -105,11 +111,13 @@ class Login extends Component {
 
           <label className="pt-label">
             Email
-            <input style={{width: "100%"}} className="pt-input" name="email" type="email" ref={(input) => { this.emailInput = input }} placeholder="Email"></input>  
+            <input style={{width: "100%"}} className="pt-input" name="email" type="email"
+             ref={(input) => { this.emailInput = input }} placeholder="Email"></input>  
           </label>
           <label className="pt-label">
             Password
-            <input style={{width: "100%"}} className="pt-input" name="password" type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password"></input>
+            <input style={{width: "100%"}} className="pt-input" name="password" 
+            type="password" ref={(input) => { this.passwordInput = input }} placeholder="Password"></input>
           </label>
           
           <input style={{width: "100%"}} type="submit" className="pt-button pt-intent-primary" value="Login"></input>
