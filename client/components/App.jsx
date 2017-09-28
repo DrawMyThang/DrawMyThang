@@ -11,7 +11,6 @@ import GamePlayTimer from './gamePlayTimer.jsx'
 import { app, base } from '../../env/base.jsx';
 import socket from 'socket.io-client';
 
-
 //import openSocket from 'socket.io-client';
 
 class App extends React.Component {
@@ -27,7 +26,7 @@ class App extends React.Component {
   componentWillMount() {
     this.removeAuthListener = app.auth().onAuthStateChanged((user) => {
       if (user) {
-
+        console.log('what is user ', user);
         const user_id = {
           displayName: user.displayName,
           photourl: user.photoURL,

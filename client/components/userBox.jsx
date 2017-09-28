@@ -23,7 +23,7 @@ export default class UserBox extends React.Component {
     }).then(result => {
       const usersArr = [];
       for (let key in result) {
-        console.log('result at key ', result[key]);
+        // console.log('result at key ', result[key]);
         if (result[key].displayName) {
           usersArr.push(result[key].displayName);
         } else {
