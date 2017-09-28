@@ -4,16 +4,6 @@ import socket from 'socket.io-client';
 class Canvas extends React.Component {
   constructor() {
     super();
-
-    // this.socket = io();
-    // this.canvas;
-    // this.context;
-
-    // this.leftOffSet;
-    // this.topOffSet;
-    // this.enableDraw;
-    // this.currentPos;
-
     this.drawLine = this.drawLine.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
@@ -23,8 +13,6 @@ class Canvas extends React.Component {
   }
 
   componentDidMount() {
-    // this.socket = io();
-
     this.canvas = document.getElementById("draw-comp");
     this.context = this.canvas.getContext('2d');
     this.context.canvas.height = this.canvas.clientHeight;
