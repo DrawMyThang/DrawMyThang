@@ -13,13 +13,14 @@ class Logout extends Component {
 
   componentWillMount() {
     app.auth().signOut().then((user) => {
+      console.log('disconnect ', user);
       this.setState({ redirect: true });
     });
   }
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to='/login' />
+      return <Redirect to='/' />
     }
     return (
       <div style={{ textAlign: 'center', position: 'absolute', top: '25%', left: '50%' }}>

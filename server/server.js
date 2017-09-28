@@ -14,29 +14,65 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const PORT = process.env.PORT || 8080;
 
-//app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../client/static')));
-
+const usernames_uid = {};
 const userArr = [];
+let numOfUsers = 0;
 var artist = 0;
 var flag = false;
 
-io.on('connection', (socks) => {
-	
-	
-	socks.on('choose artist', () => {
-		io.emit('choose artist', userArr[artist]);
-		if(artist + 1 >= userArr.length) {
-			artist = 0;
-		} else {
-			artist++;
-		}
-	});
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '../client/static')));
 
-	socks.on('drawing', (drawData) => {
+
+app.get('/users', (req, res) => {
+  res.status(200).json(usernames_uid);
+});
+
+
+
+io.on('connection', (socks) => {
+  
+  socks.on('connect user', (user) => {
+    if (!usernames_uid.hasOwnProperty(user.uid)) {
+      usernames_uid[user.uid] = user;
+    }
+
+    if (!user.displayName) {
+      io.emit('display users', user.uid);
+    } else {
+      io.emit('display users', user.displayName);
+    }
+    numOfUsers++
+    console.log('number of users ', numOfUsers);
+    // console.log('----------------');
+    // console.log(usernames_uid);
+  });
+
+  socks.on('disconnect', () => {
+    var disconnectId = socks.id;
+    if (userArr.includes(disconnectId)) {
+      userArr.splice(userArr.indexOf(disconnectId), 1);
+      io.emit('disconnect', userArr);
+    }
+
+    //console.log(userArr, "userArr after disconnect");
+    //console.log('user ', disconnectId, ' disconnected');
+
+  });
+  
+  socks.on('choose artist', () => {
+    io.emit('choose artist', userArr[artist]);
+    if(artist + 1 >= userArr.length) {
+      artist = 0;
+    } else {
+      artist++;
+    }
+  });
+
+  socks.on('drawing', (drawData) => {
     //console.log(socks.id, 'drawing id socks')
-		io.emit('drawing', drawData);
-	});
+    io.emit('drawing', drawData);
+  });
 
   socks.on('chat message', (msg) => {
     //console.log('message: ', msg, 'id: ', socks.id);
@@ -47,11 +83,12 @@ io.on('connection', (socks) => {
     userArr.push(socks.id);
     //console.log(socks.id, 'socks.id');
     //console.log(userArr, 'userArr')
-		io.emit('user id', userArr);
+    io.emit('user id', userArr);
   });
 
+  // socks.on('total players')
 
-  if (userArr.length === 2 && flag===false){
+  if (numOfUsers === 3 && flag===false){
     //console.log(socks.id, 'timer id ')
     flag = true;
     //console.log(userArr, 'userArr in timer')
@@ -74,23 +111,22 @@ io.on('connection', (socks) => {
       flag = false;
       clearInterval(setInt);
     }
-}
+  }
    
- 
-  socks.on('disconnect', () => {
-		var disconnectId = socks.id;
-    if (userArr.includes(disconnectId)) {
-      userArr.splice(userArr.indexOf(disconnectId), 1);
-      io.emit('disconnect', userArr);
-    }
+  // socks.on('disconnect', () => {
+  // 	var disconnectId = socks.id;
+  //   if (userArr.includes(disconnectId)) {
+  //     userArr.splice(userArr.indexOf(disconnectId), 1);
+  //     io.emit('disconnect', userArr);
+  //   }
 
-    //console.log(userArr, "userArr after disconnect");
-    //console.log('user ', disconnectId, ' disconnected');
+  //   //console.log(userArr, "userArr after disconnect");
+  //   //console.log('user ', disconnectId, ' disconnected');
 
-  });
+  // });
 
 });
 
 server.listen(PORT, () => {
-	console.log(`Server is listening on: ${PORT}`);
+  console.log(`Server is listening on: ${PORT}`);
 });
