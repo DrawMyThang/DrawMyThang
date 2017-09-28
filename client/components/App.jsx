@@ -8,7 +8,7 @@ import ChatBox from './chatBox.jsx';
 import Canvas from './canvas.jsx';
 import UserBox from './userBox.jsx';
 import GamePlayTimer from './gamePlayTimer.jsx'
-import { app, base } from '../../env/base.jsx';
+import { app, base, githubProvider } from '../../env/base.jsx';
 import socket from 'socket.io-client';
 
 //import openSocket from 'socket.io-client';
@@ -83,13 +83,13 @@ class App extends React.Component {
             </div>
           </div>
         </BrowserRouter>
-        <GamePlayTimer socket={this.state.socket}/>
       <div id="whole">
+        <GamePlayTimer socket={this.state.socket}/>
         <section className="sidebar">
           <UserBox socket={this.state.socket} />
           <ChatBox socket={this.state.socket} auth_user={this.state.user} />
         </section>
-        <Canvas socket={this.state.socket}/>
+        <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
       </div>
       </div>
     );
