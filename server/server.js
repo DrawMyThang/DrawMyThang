@@ -21,7 +21,8 @@ const usernames_uid = {
     displayName: 'donatello',
     photoURL: null,
     uid: 'second',
-  }
+  },
+
 };
 
 let numOfUsers = 2;
@@ -55,7 +56,9 @@ io.on('connection', (socks) => {
         count = 1;
         countdown = 60;
         const keys = Object.keys(usernames_uid);
-        io.emit('choose artist', usernames_uid[keys[artist]].uid);
+        const currArtist = usernames_uid[keys[artist]].uid;
+        io.emit('choose artist', currArtist);
+        utils.get_random_word(io, currArtist);
         if(artist + 1 >= keys.length) {
           artist = 0;
         } else {
@@ -68,7 +71,7 @@ io.on('connection', (socks) => {
         // myStopFunction();
       }
       io.emit('timer', countdown);
-      }, 1000);
+      }, 100);
 
     // const myStopFunction = () => {
     //   flag = false;
