@@ -1,4 +1,5 @@
 import React from 'react';
+import Chatlog from './chatlog.jsx';
 
 export default class ChatBox extends React.Component {
   constructor(props) {
@@ -46,17 +47,9 @@ export default class ChatBox extends React.Component {
     return(
       <div className="chatWrapper">
           <div id="chatBoxTitle">Chats</div>
-          {this.state.text.map((msg,i) => 
-            <div className = "userChatLog"> 
-              <div>
-                <img className="userPhoto" src={this.userPic}/>
-              </div> 
-                <p key={i} className="chatMessage" > 
-                  <span className="userInChat"> {msg.split(" ")[0]}
-                  </span> 
-                  {" "} {msg.split(" ")[1]}
-                </p> 
-            </div>)}
+          {this.state.text.map((msg,i) => {
+              return (<Chatlog key={i} msg={msg} userPic={this.userPic}/>);
+          })}
             <div id="form">
               <input id="m" onChange={this.handleText} onKeyDown={this.handleEnterKey} />
                 
