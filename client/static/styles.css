@@ -1,42 +1,74 @@
 * { 
-	margin: 0;
+	 margin: 0;
 	 padding: 0; 
 	 box-sizing: border-box; 
+
 }
 
-/*container for users and chats*/
+
+html, body, #app, #firstDiv {
+	height:100%;
+	width: 100%;
+
+}
 
 #whole{
 	display:flex;
-	flex-direction: row;
+	height: 95%;
+	width: 100%;
 }
 
 .sidebar {
-  flex-direction: row; 
-  flex: 1 0 10em; 
+  flex-direction: column; 
+  flex: .6; 
   background-color: lightgray;
-  max-width: 400px;
+  
+}
+
+#wordCanvasDisplay{
+	flex-direction: row;
+	flex: 2;
+	height: 100%;
+	width: 100%;
+}
+
+#timerWordDisplay{
+	background-color: #00FFFF;
+	border-radius: 5px;
+	border: solid black 1px;
+	text-align: center;
+	flex-direction: column;
+	flex: 1;
+	min-height: 50px;
+	max-height: 50px;
+	margin: 0;
 }
 
 #draw-comp {
+	margin: 0;
 	border: solid black 2px;
 	text-align: center;
-	flex-grow: 1;
+	flex: 1;
+	height: 95%;
+	width: 100%;
 }
 
 
 .userBox{
+	height: 50%;
   font-size: 1.2em;
-  height:425px;
+  flex-direction: row;
+  flex-grow: 1;
   background-color: lightgray;
 }
 
 .chatWrapper{
-  height:215px;
-  width: 100%;
-  max-width: 396px;
-  border-radius: 5px;
   display: flex;
+  max-height: 30rem;
+  height:100%;
+  width: 100%;
+  flex: 1;
+  border-radius: 5px;
   align-items: flex-start;
   flex-direction: column;
   box-shadow: 3px 3px #ccc;
@@ -45,14 +77,15 @@
   padding-bottom: 50px;  
 }
 
-#chatBoxTitle{
+.chatBoxTitle{
 	background-color: #00FFFF;
 	border-radius: 5px;
 	display: flex;
 	position: relative;
 	flex-direction: column;
 	flex-grow: 1;
-	min-width: 396px;
+	min-width: 25rem;
+	max-width: 25rem;
 	min-height: 20px;
 	max-height: 20px;
 	margin-bottom: 5px;

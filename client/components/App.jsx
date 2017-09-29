@@ -72,11 +72,11 @@ class App extends React.Component {
     }
 
     return (
-      <div>
+      <div id='firstDiv'>
         <BrowserRouter>
           <div>
             <Header authenticated={this.state.authenticated} />
-            <div className="main-content" style={{padding: "1rem"}} >
+            <div className="main-content"  >
               <div className="workspace" >
                 <Route path="/login" render={() => <Login state={this.state} />} />
                 <Route path="/logout" render={() => <Logout state={this.state} />} />
@@ -85,15 +85,19 @@ class App extends React.Component {
           </div>
         </BrowserRouter>
       <div id="whole">
-        <GamePlayTimer socket={this.state.socket}/>
-        <Worddisplay socket={this.state.socket} uid={this.state.user.uid} />
         <section className="sidebar">
           <UserBox socket={this.state.socket} />
           <ChatBox socket={this.state.socket} auth_user={this.state.user} />
         </section>
-        <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
+      <div id="wordCanvasDisplay">
+        <div id="timerWordDisplay">
+          <GamePlayTimer socket={this.state.socket}/>
+          <Worddisplay socket={this.state.socket} uid={this.state.user.uid} />
+        </div>
+          <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
+        </div>
       </div>
-      </div>
+    </div>
     );
   }
 }

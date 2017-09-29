@@ -49,21 +49,22 @@ export default class ChatBox extends React.Component {
 
   render(){
     return(
-      <div className="chatWrapper">
-          <div id="chatBoxTitle">Chats</div>
-          {this.state.text.map((msg,i) => {
-              return (<Chatlog key={i} msg={msg} userPic={this.userPic}/>);
-          })}
-            <div id="form">
-              <input id="m" onChange={this.handleText} onKeyDown={this.handleEnterKey} />
-                
-              <button id ="chatButton"onClick={()=>{
-                this.handleChat();
-                }
-              }> Send</button>
-            </div>
+      <div>
+        <div className="chatWrapper">
+            <div className="chatBoxTitle">Chats</div>
+            {this.state.text.map((msg,i) => {
+                return (<Chatlog key={i} msg={msg} userPic={this.userPic}/>);
+            })}
+        </div>
+        <div id="form">
+          <input id="m" onChange={this.handleText} onKeyDown={this.handleEnterKey} />
+            
+          <button id ="chatButton"onClick={()=>{
+            this.handleChat();
+            }
+          }> Send</button>
+        </div>
       </div>
-
     )
   }
 

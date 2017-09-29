@@ -44,6 +44,7 @@ export default class UserBox extends React.Component {
   render(){
   	return(
   			<div className="userBox">
+          <div className="chatBoxTitle">Online</div>
   					{this.state.users.map((user,i) => <p key={i}> User {i+1}: {user.displayName} points: {user.points} </p>)}
   			</div>
   		)
