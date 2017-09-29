@@ -11,7 +11,10 @@ export default class CanvasColors extends React.Component {
 		return(
 			<div>
 				<div id="canvasColors">
-				Canvas Colors
+					<div className="color red"></div>
+					<div className="color blue"></div>
+					<div className="color black"></div>
+					<div className="color yellow"></div>
 				</div>
 			</div>
 		)

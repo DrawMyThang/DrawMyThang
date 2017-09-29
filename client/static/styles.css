@@ -198,8 +198,49 @@ html, body, #app, #firstDiv {
 }
 
 #canvasColors{
+	display: flex;
 	position:absolute;
-     bottom:0;
-     right:0;
+  bottom:0;
+  right:0;
+  height: 3em;
+  width: 15em;
+  border: solid black 2px;
 }
+
+.color {
+	flex: 1;
+	cursor: pointer;
 }
+
+.red{
+	background-color: red;
+}
+
+.red:hover{
+	opacity: .5;
+}
+
+.black{
+	background-color: black;
+}
+
+.black:hover{
+	opacity: .5;
+}
+
+.yellow{
+	background-color: yellow;
+}
+
+.yellow:hover{
+	opacity: .5;
+}
+
+.blue{
+	background-color: blue;
+}
+
+.blue:hover{
+	opacity: .5;
+}
+
