@@ -22,7 +22,7 @@ html, body, #app, #firstDiv {
 
 .sidebar {
   flex-direction: column; 
-  flex: .6; 
+  flex: 1; 
   background-color: lightgray;
   
 }
