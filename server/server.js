@@ -117,12 +117,12 @@ io.on('connection', (socks) => {
   });
 
   socks.on('chat message', (data) => {
-
+    //console.log(data, 'chat message data')
 
     if (data.user.uid !== '') {
       let guess = data.message.replace(/\s+/g, '').toLowerCase();
       console.log('user guess', guess);
-      io.emit('chat message', data.user.displayName + ": " + data.message);
+      io.emit('chat message', data.user.displayName + ": " + data.message + " " + data.user.photourl);
       if (guess === currWord) {
         winner = true;
         usernames_uid[data.user.uid].points++;

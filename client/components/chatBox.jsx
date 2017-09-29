@@ -21,6 +21,7 @@ export default class ChatBox extends React.Component {
   }
 
   chatMessage(text) {
+    console.log(text, 'chatMessage text')
     this.setState({
       text: [...this.state.text, text],
     });
