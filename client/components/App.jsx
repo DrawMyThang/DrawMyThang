@@ -9,6 +9,7 @@ import Canvas from './canvas.jsx';
 import UserBox from './userBox.jsx';
 import GamePlayTimer from './gamePlayTimer.jsx';
 import Worddisplay from './Worddisplay.jsx';
+import CanvasColors from './canvasColors.jsx'
 import { app, base, githubProvider } from '../../env/base.jsx';
 import socket from 'socket.io-client';
 
@@ -98,6 +99,7 @@ class App extends React.Component {
           <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
         </div>
       </div>
+      <CanvasColors/>
     </div>
     );
   }

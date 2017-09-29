@@ -22,7 +22,7 @@ html, body, #app, #firstDiv {
 
 .sidebar {
   flex-direction: column; 
-  flex: 1; 
+  flex: .6; 
   background-color: lightgray;
   
 }
@@ -167,7 +167,7 @@ html, body, #app, #firstDiv {
   font-weight: 500;
   line-height: 1.3;
   -webkit-appearance: none;
-  -moz-appearance:    none;
+  -moz-appearance: none;
   justify-content: center;
   align-items: center;
   flex: 0 0 160px;
@@ -195,4 +195,11 @@ html, body, #app, #firstDiv {
 
 #messages li:nth-child(odd) { 
 	background: #eee; 
+}
+
+#canvasColors{
+	position:absolute;
+     bottom:0;
+     right:0;
+}
 }
