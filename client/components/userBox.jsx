@@ -23,12 +23,8 @@ export default class UserBox extends React.Component {
   getUsers(result) {
     const usersArr = [];
     for (let key in result) {
-      // console.log('result at key ', result[key]);
-      if (result[key].displayName) {
-        usersArr.push(result[key].displayName);
-      } else {
-        usersArr.push(result[key].uid);
-      }
+      // console.log('result at key ', result[key])
+        usersArr.push(result[key]);
     }
     this.setState({
       users: [...usersArr],
@@ -48,7 +44,7 @@ export default class UserBox extends React.Component {
   render(){
   	return(
   			<div className="userBox">
-  					{this.state.users.map((user,i) => <p key={i}> User {i+1}: {user}</p>)}
+  					{this.state.users.map((user,i) => <p key={i}> User {i+1}: {user.displayName} points: {user.points} </p>)}
   			</div>
   		)
   }

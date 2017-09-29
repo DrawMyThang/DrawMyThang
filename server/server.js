@@ -16,17 +16,22 @@ const usernames_uid = {
     displayName: 'leonardo',
     photoURL: null,
     uid: 'first',
+    points: 0
   },
   second: {
     displayName: 'donatello',
     photoURL: null,
     uid: 'second',
-  }
+    points: 0
+  },
+
 };
 
 let numOfUsers = 2;
 var artist = 0;
 var flag = false;
+let currWord = '';
+let winner = false;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/static')));
@@ -39,36 +44,45 @@ io.on('connection', (socks) => {
 
   socks.on('connect user', (user) => {
     if (!usernames_uid.hasOwnProperty(user.uid)) {
+      user.points = 0;
       usernames_uid[user.uid] = user;
     }
-    io.emit('display users', user.displayName);
+    io.emit('display users', user);
     numOfUsers++;
     
 
-     if (numOfUsers === 3 && flag===false){
-    flag = true;
-    let countdown = 6;
-    let count = 0;
-    const setInt = setInterval(() => {  
-      countdown--;
-      if (countdown === -1 && count === 0) {
-        count = 1;
-        countdown = 60;
-        const keys = Object.keys(usernames_uid);
-        io.emit('choose artist', usernames_uid[keys[artist]].uid);
-        if(artist + 1 >= keys.length) {
-          artist = 0;
-        } else {
-          artist++;
+    if (numOfUsers === 3 && flag===false){
+      flag = true;
+      let countdown = 6;
+      let count = 0;
+      const setInt = setInterval(() => {  
+        countdown--;
+        if (countdown === -1 && count === 0) {
+
+          count = 1;
+          countdown = 60;
+          const keys = Object.keys(usernames_uid);
+
+          const currArtist = usernames_uid[keys[artist]].uid;
+          io.emit('choose artist', currArtist);
+          utils.get_random_word(io, currArtist, (word) => {
+            currWord = word.toLowerCase();
+          });
+
+          if(artist + 1 >= keys.length) {
+            artist = 0;
+          } else {
+            artist++;
+          }
+        } else if ( (countdown === -1 && count > 0) || winner){
+          countdown = 6;
+          count = 0;
+          winner = false;
+          // myStopFunction();
+          io.emit('clear canvas');
         }
-        console.log('artist ', usernames_uid[keys[artist]].uid);
-      } else if ( countdown === -1 && count > 0){
-        countdown = 6;
-        count = 0;
-        // myStopFunction();
-      }
-      io.emit('timer', countdown);
-      }, 1000);
+        io.emit('timer', countdown);
+      }, 100);
 
     // const myStopFunction = () => {
     //   flag = false;
@@ -95,7 +109,6 @@ io.on('connection', (socks) => {
     } else {
       artist++;
     }
-    console.log('current artis ', usernames_uid[keys[artist]].uid);
   });
 
   socks.on('drawing', (drawData) => {
@@ -104,9 +117,18 @@ io.on('connection', (socks) => {
   });
 
   socks.on('chat message', (data) => {
-    //console.log('message: ', msg, 'id: ', socks.id);
+
+
     if (data.user.uid !== '') {
+      let guess = data.message.replace(/\s+/g, '').toLowerCase();
+      console.log('user guess', guess);
       io.emit('chat message', data.user.displayName + ": " + data.message);
+      if (guess === currWord) {
+        winner = true;
+        usernames_uid[data.user.uid].points++;
+        io.emit('get users', usernames_uid);
+        console.log('winner winner chicken dinner');
+      }
     }
   });
 

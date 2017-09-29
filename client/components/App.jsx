@@ -7,7 +7,8 @@ import Logout from './Logout.jsx';
 import ChatBox from './chatBox.jsx';
 import Canvas from './canvas.jsx';
 import UserBox from './userBox.jsx';
-import GamePlayTimer from './gamePlayTimer.jsx'
+import GamePlayTimer from './gamePlayTimer.jsx';
+import Worddisplay from './Worddisplay.jsx';
 import { app, base, githubProvider } from '../../env/base.jsx';
 import socket from 'socket.io-client';
 
@@ -85,6 +86,7 @@ class App extends React.Component {
         </BrowserRouter>
       <div id="whole">
         <GamePlayTimer socket={this.state.socket}/>
+        <Worddisplay socket={this.state.socket} uid={this.state.user.uid} />
         <section className="sidebar">
           <UserBox socket={this.state.socket} />
           <ChatBox socket={this.state.socket} auth_user={this.state.user} />
