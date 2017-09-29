@@ -1,20 +1,22 @@
 * { 
 	 margin: 0;
 	 padding: 0; 
-	 box-sizing: border-box; 
-
 }
 
 
 html, body, #app, #firstDiv {
 	height:100%;
 	width: 100%;
-
+	position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
 }
 
 #whole{
 	display:flex;
-	height: 95%;
+	height: 100%;
 	width: 100%;
 }
 
@@ -39,8 +41,8 @@ html, body, #app, #firstDiv {
 	text-align: center;
 	flex-direction: column;
 	flex: 1;
-	min-height: 50px;
-	max-height: 50px;
+	min-height: 4em;
+	max-height: 4em;
 	margin: 0;
 }
 
@@ -49,10 +51,9 @@ html, body, #app, #firstDiv {
 	border: solid black 2px;
 	text-align: center;
 	flex: 1;
-	height: 95%;
+	height: 100%;
 	width: 100%;
 }
-
 
 .userBox{
 	height: 50%;
@@ -65,29 +66,25 @@ html, body, #app, #firstDiv {
 .chatWrapper{
   display: flex;
   max-height: 30rem;
-  height:100%;
   width: 100%;
   flex: 1;
-  border-radius: 5px;
   align-items: flex-start;
   flex-direction: column;
-  box-shadow: 3px 3px #ccc;
   overflow-x: hidden;
   overflow-y: scroll; 
-  padding-bottom: 50px;  
+  padding-bottom: 3em;  
 }
 
 .chatBoxTitle{
 	background-color: #00FFFF;
 	border-radius: 5px;
-	display: flex;
 	position: relative;
 	flex-direction: column;
 	flex-grow: 1;
 	min-width: 25rem;
 	max-width: 25rem;
-	min-height: 20px;
-	max-height: 20px;
+	min-height: 1.5em;
+	max-height: 1.5em;
 	margin-bottom: 5px;
 	text-align: center;
 	color: white;
