@@ -16,11 +16,13 @@ const usernames_uid = {
     displayName: 'leonardo',
     photoURL: null,
     uid: 'first',
+    points: 0
   },
   second: {
     displayName: 'donatello',
     photoURL: null,
     uid: 'second',
+    points: 0
   },
 
 };
@@ -42,9 +44,10 @@ io.on('connection', (socks) => {
 
   socks.on('connect user', (user) => {
     if (!usernames_uid.hasOwnProperty(user.uid)) {
+      user.points = 0;
       usernames_uid[user.uid] = user;
     }
-    io.emit('display users', user.displayName);
+    io.emit('display users', user);
     numOfUsers++;
     
 
@@ -122,6 +125,8 @@ io.on('connection', (socks) => {
       io.emit('chat message', data.user.displayName + ": " + data.message);
       if (guess === currWord) {
         winner = true;
+        usernames_uid[data.user.uid].points++;
+        io.emit('get users', usernames_uid);
         console.log('winner winner chicken dinner');
       }
     }
