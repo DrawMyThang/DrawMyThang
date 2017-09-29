@@ -33,6 +33,7 @@ class Login extends Component {
             intent: Intent.DANGER, message: "Unable to login with Github" 
           });
         } else {
+          console.log(result, 'authWithGithub')
           const user_id = { 
             displayName: result.user.displayName,
             photourl: result.user.photoURL,

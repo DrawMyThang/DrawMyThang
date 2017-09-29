@@ -7,7 +7,6 @@ export default class GamePlayTimer extends React.Component{
 		this.state = {
 			time: "",
 			users: 0,
-			players: "players",
 			declaration: "",
 			count: 0
 		}
@@ -55,7 +54,7 @@ export default class GamePlayTimer extends React.Component{
 		if (this.state.users < 2){
 			this.setState({
 				players: "players",
-				declaration: `${this.state.time} Need ${3- this.state.users} more ${this.state.players} to start`
+				declaration: `${this.state.time} Need ${3- this.state.users} more players to start`
 			})
 		} else if (this.state.users === 2){
 			this.setState({
