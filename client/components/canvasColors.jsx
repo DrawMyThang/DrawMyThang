@@ -11,6 +11,7 @@ export default class CanvasColors extends React.Component {
 		return(
 			<div>
 				<div id="canvasColors">
+					<div id="changeColor">Change Color: </div>
 					<div className="color red"></div>
 					<div className="color blue"></div>
 					<div className="color black"></div>
