@@ -32,32 +32,33 @@ export default class GamePlayTimer extends React.Component {
 			this.setState({
 				time: time,
 				declaration: "Get Ready In: ",
-				count: this.state.count+=1
+				count: this.state.count+=1,
 			})
 		} else if (this.state.count >= 5) {
 			this.setState({
 				time: time,
 				declaration: "GamePlayTimer: ",
-				count: 6
+				count: 6,
 			})
 		}
 	}
 
 	handleUserNumber(user) {
 		this.setState({
-			users: user.length
+			users: user
 		})
 		this.handlePlayers();
 		console.log(user, "users in gamePlayTimer");
 	}
 
-	handlePlayers() {
+
+	handlePlayers(){
 		if (this.state.users < 2){
 			this.setState({
 				players: "players",
 				declaration: `${this.state.time} Need ${3- this.state.users} more players to start`
-			});
-		} else if (this.state.users === 2) {
+			})
+		} else if (this.state.users === 2){
 			this.setState({
 				declaration: `${this.state.time} Need ${3- this.state.users} more player to start `
 			});
