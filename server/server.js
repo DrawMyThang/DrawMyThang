@@ -112,6 +112,7 @@ io.on('connection', (socks) => {
   });
 
   socks.on('drawing', (drawData) => {
+    console.log(drawData, 'drawData')
     io.emit('drawing', drawData);
   });
 

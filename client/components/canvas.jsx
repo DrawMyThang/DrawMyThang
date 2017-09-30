@@ -6,6 +6,7 @@ class Canvas extends React.Component {
     super(props);
     this.state = {
       isArtist: false,
+      color: 'black',
     }
 
     this.drawLine = this.drawLine.bind(this);
@@ -133,6 +134,11 @@ class Canvas extends React.Component {
         callback.apply(null, arguments);
       }
     };
+  }
+
+  handleColorChange(color){
+    console.log(color, 'color in colore')
+    this.state.color = color;
   }
 
   render() {
