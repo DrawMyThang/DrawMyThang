@@ -29,7 +29,7 @@ class Canvas extends React.Component {
     this.enableDraw = false;
     this.currentPos = {};
 
-    this.canvas.addEventListener('mousemove', this.throttle(this.onMouseMove, 50), false);
+    this.canvas.addEventListener('mousemove', this.throttle(this.onMouseMove, 10), false);
     this.canvas.addEventListener('mousedown', this.onMouseDown, false);
     this.canvas.addEventListener('mouseup', this.onMouseUp, false);
     this.props.socket.on('drawing', this.onDrawingEvent);
@@ -45,8 +45,8 @@ class Canvas extends React.Component {
     }
     this.enableDraw = false;
   }
-  drawLine(x0, y0, x1, y1, emit) {
-    
+
+  drawLine(x0, y0, x1, y1, emit) {  
     this.context.beginPath();
     this.context.moveTo(x0, y0);
     this.context.lineTo(x1, y1);
