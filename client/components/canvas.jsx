@@ -40,6 +40,7 @@ class Canvas extends React.Component {
     for (var i = 0; i < this.colors.length; i++){
       this.colors[i].addEventListener('click', this.onColorUpdate, false);
     }
+    window.addEventListener('resize', this.onResize, false);
     this.props.socket.on('drawing', this.onDrawingEvent);
     this.props.socket.on('choose artist', this.isArtist);
     this.props.socket.on('clear canvas', this.wipeCanvas);
@@ -74,8 +75,8 @@ class Canvas extends React.Component {
   }
 
   wipeCanvas() {
-    this.context.clearRect(0, 0, this.context.canvas.width
-      ,this.context.canvas.height)
+    this.context.clearRect(0, 0, this.context.canvas.width, 
+                                 this.context.canvas.height);
   }
 
   onMouseDown(e) {
@@ -110,8 +111,10 @@ class Canvas extends React.Component {
   }
 
   onColorUpdate(e) {
-    console.log('RAINBOWS');
-    console.log(e.target.className.split(' ')[1]);
+    const color = e.target.className.split(' ')[1];
+    if (color === 'clear') {
+      this.wipeCanvas();
+    }
     this.currentColor.color = e.target.className.split(' ')[1];
   }
 
@@ -136,6 +139,7 @@ class Canvas extends React.Component {
       <div className="whiteboard">
         <canvas id="draw-comp"></canvas>
         <div className="colors">
+          <div className="color clear">Erase</div>
           <div className="color black"></div>
           <div className="color red"></div>
           <div className="color green"></div>

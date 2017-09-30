@@ -50,7 +50,7 @@ io.on('connection', (socks) => {
     io.emit('display users', user);
     numOfUsers++;
     
-    if (numOfUsers === 3 && flag===false){
+    if (numOfUsers === 3 && !flag){
       flag = true;
       let countdown = 6;
       let count = 0;
@@ -77,15 +77,14 @@ io.on('connection', (socks) => {
           countdown = 6;
           count = 0;
           winner = false;
-          // myStopFunction();
-          io.emit('clear canvas');
+					io.emit('clear canvas');
+					
+					if (numOfUsers < 3 && flag) {
+						myStopFunction(setInt);
+					}
         }
         io.emit('timer', countdown);
       }, 100);
-    // const myStopFunction = () => {
-    //   flag = false;
-    //   clearInterval(setInt);
-    // }
     }
   });
 
@@ -136,3 +135,8 @@ io.on('connection', (socks) => {
 server.listen(PORT, () => {
   console.log(`Server is listening on: ${PORT}`);
 });
+
+const myStopFunction = (setInt) => {
+	flag = false;
+	clearInterval(setInt);
+};
