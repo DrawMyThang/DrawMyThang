@@ -48,7 +48,6 @@ export default class GamePlayTimer extends React.Component {
 			users: user
 		})
 		this.handlePlayers();
-		console.log(user, "users in gamePlayTimer");
 	}
 
 
