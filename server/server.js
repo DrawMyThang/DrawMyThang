@@ -137,6 +137,10 @@ io.on('connection', (socks) => {
     io.emit('numOfUsers', numOfUsers);
   });
 
+  socks.on('numOfUsers', () => {
+    io.emit('numOfUsers', userArr);
+  });
+
 
  
 
