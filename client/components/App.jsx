@@ -96,7 +96,6 @@ class App extends React.Component {
           <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
         </div>
       </div>
-      {/* <CanvasColors/> */}
     </div>
     );
   }

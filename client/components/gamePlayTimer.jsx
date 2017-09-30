@@ -26,7 +26,7 @@ export default class GamePlayTimer extends React.Component {
 	}
 
 	handleTimer(time){
-    console.log('what is timer', time);
+  
 		console.log(this.state.count, 'count');
 		if (this.state.count < 5) {
 			this.setState({
