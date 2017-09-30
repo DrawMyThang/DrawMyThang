@@ -50,6 +50,7 @@ class Canvas extends React.Component {
   isArtist(uid) {
     if (uid === this.props.uid) {
       this.state.isArtist = true;
+      this.state.color = 'black';
     } else {
       this.state.isArtist = false;
     }
