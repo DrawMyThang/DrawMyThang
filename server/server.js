@@ -11,6 +11,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const PORT = process.env.PORT || 8080;
 
+// dummy values
 const usernames_uid = {
   first: {
     displayName: 'leonardo',
@@ -24,12 +25,11 @@ const usernames_uid = {
     uid: 'second',
     points: 0
   },
-
 };
 
 let numOfUsers = 2;
-var artist = 0;
-var flag = false;
+let artist = 0;
+let flag = false;
 let currWord = '';
 let winner = false;
 
@@ -50,7 +50,6 @@ io.on('connection', (socks) => {
     io.emit('display users', user);
     numOfUsers++;
     
-
     if (numOfUsers === 3 && flag===false){
       flag = true;
       let countdown = 6;
@@ -83,13 +82,11 @@ io.on('connection', (socks) => {
         }
         io.emit('timer', countdown);
       }, 100);
-
     // const myStopFunction = () => {
     //   flag = false;
     //   clearInterval(setInt);
     // }
-  }
-
+    }
   });
 
   socks.on('disconnect user', (user) => {
@@ -112,17 +109,14 @@ io.on('connection', (socks) => {
   });
 
   socks.on('drawing', (drawData) => {
-    //console.log(socks.id, 'drawing id socks')
     io.emit('drawing', drawData);
   });
 
   socks.on('chat message', (data) => {
-    //console.log(data, 'chat message data')
-
     if (data.user.uid !== '') {
       let guess = data.message.replace(/\s+/g, '').toLowerCase();
       console.log('user guess', guess);
-      io.emit('chat message', data.user.displayName + ": " + data.message + " " + data.user.photourl);
+      io.emit('chat message', [data.user.displayName + ": ", data.message, data.user.photourl]);
       if (guess === currWord) {
         winner = true;
         usernames_uid[data.user.uid].points++;
@@ -136,9 +130,6 @@ io.on('connection', (socks) => {
     console.log(numOfUsers, 'numOfUsers')
     io.emit('numOfUsers', numOfUsers);
   });
-
-
- 
 
 });
 

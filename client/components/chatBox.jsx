@@ -21,7 +21,6 @@ export default class ChatBox extends React.Component {
   }
 
   chatMessage(text) {
-    console.log(text, 'chatMessage text')
     this.setState({
       text: [...this.state.text, text],
     });
@@ -51,18 +50,18 @@ export default class ChatBox extends React.Component {
     return(
       <div>
         <div className="chatWrapper">
-            <div className="chatBoxTitle">Chats</div>
-            {this.state.text.map((msg,i) => {
-                return (<Chatlog key={i} msg={msg} userPic={this.userPic}/>);
-            })}
+          <div className="chatBoxTitle">Chats</div>
+          {this.state.text.map((msg,i) => {
+              return (<Chatlog key={i} msg={msg} userPic={this.userPic}/>);
+          })}
         </div>
         <div id="form">
           <input id="m" onChange={this.handleText} onKeyDown={this.handleEnterKey} />
             
-          <button id ="chatButton"onClick={()=>{
+          <button id ="chatButton" onClick={()=>{
             this.handleChat();
             }
-          }> Send</button>
+          }>Send</button>
         </div>
       </div>
     )

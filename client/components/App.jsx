@@ -23,6 +23,7 @@ class App extends React.Component {
         photoURL: null,
         uid: '',
       },
+
       authenticated: false,
       loading: true,
       socket: socket('http://localhost:8080'),
