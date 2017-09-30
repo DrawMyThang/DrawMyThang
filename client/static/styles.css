@@ -46,6 +46,11 @@ html, body, #app, #firstDiv {
 	margin: 0;
 }
 
+.whiteboard {
+  height: 100%;
+  width: 100%;
+}
+
 #draw-comp {
 	margin: 0;
 	border: solid black 2px;
@@ -254,3 +259,25 @@ html, body, #app, #firstDiv {
 	opacity: .5;
 }
 
+.green{
+	background-color: green;
+}
+
+.green:hover{
+	opacity: .5;
+}
+
+.colors {
+	display: flex;
+	position:absolute;
+  bottom:0;
+  right:0;
+  height: 5.5em;
+  width: 30em;
+}
+  
+/* .color {
+	display: inline-block;
+	height: 48px;
+	width: 48px;
+} */
