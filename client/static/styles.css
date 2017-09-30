@@ -167,7 +167,7 @@ html, body, #app, #firstDiv {
   font-weight: 500;
   line-height: 1.3;
   -webkit-appearance: none;
-  -moz-appearance:    none;
+  -moz-appearance: none;
   justify-content: center;
   align-items: center;
   flex: 0 0 160px;
@@ -196,3 +196,61 @@ html, body, #app, #firstDiv {
 #messages li:nth-child(odd) { 
 	background: #eee; 
 }
+
+#canvasColors{
+	display: flex;
+	position:absolute;
+  bottom:0;
+  right:0;
+  height: 5.5em;
+  width: 30em;
+}
+
+#changeColor {
+	flex: .3;
+	margin-left: auto;
+  margin-right: auto;
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
+}
+
+.color {
+	flex: 1;
+	cursor: pointer;
+	border-radius: 100%;
+}
+
+.red{
+	background-color: red;
+	flex: 1;
+}
+
+.red:hover{
+	opacity: .5;
+}
+
+.black{
+	background-color: black;
+}
+
+.black:hover{
+	opacity: .5;
+}
+
+.yellow{
+	background-color: yellow;
+}
+
+.yellow:hover{
+	opacity: .5;
+}
+
+.blue{
+	background-color: blue;
+}
+
+.blue:hover{
+	opacity: .5;
+}
+
