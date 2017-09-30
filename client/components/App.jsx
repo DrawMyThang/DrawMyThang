@@ -83,21 +83,20 @@ class App extends React.Component {
             </div>
           </div>
         </BrowserRouter>
-      <div id="whole">
-        <section className="sidebar">
-          <UserBox socket={this.state.socket} />
-          <ChatBox socket={this.state.socket} auth_user={this.state.user} />
-        </section>
-      <div id="wordCanvasDisplay">
-        <div id="timerWordDisplay">
-          <GamePlayTimer socket={this.state.socket}/>
-          <Worddisplay socket={this.state.socket} uid={this.state.user.uid} />
-        </div>
-          <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
+        <div id="whole">
+          <section className="sidebar">
+            <UserBox socket={this.state.socket} />
+            <ChatBox socket={this.state.socket} auth_user={this.state.user} />
+          </section>
+        <div id="wordCanvasDisplay">
+          <div id="timerWordDisplay">
+            <GamePlayTimer socket={this.state.socket}/>
+            <Worddisplay socket={this.state.socket} uid={this.state.user.uid} />
+          </div>
+            <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
+          </div>
         </div>
       </div>
-      {/* <CanvasColors/> */}
-    </div>
     );
   }
 }
