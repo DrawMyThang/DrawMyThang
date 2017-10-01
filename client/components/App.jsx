@@ -1,6 +1,7 @@
 import { Spinner } from '@blueprintjs/core';
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import socket from 'socket.io-client';
 import Header from './Header.jsx';
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
@@ -10,9 +11,6 @@ import UserBox from './userBox.jsx';
 import GamePlayTimer from './gamePlayTimer.jsx';
 import Worddisplay from './Worddisplay.jsx';
 import { app, base, githubProvider } from '../../env/base.jsx';
-import socket from 'socket.io-client';
-
-//import openSocket from 'socket.io-client';
 
 class App extends React.Component {
   constructor() {
@@ -23,10 +21,13 @@ class App extends React.Component {
         photoURL: null,
         uid: '',
       },
+
       authenticated: false,
       loading: true,
       socket: socket('http://localhost:8080'),
+      login: false,
     };
+    this.changeLogInStatus = this.changeLogInStatus.bind(this)
   }
 
   componentDidMount() {
@@ -61,6 +62,19 @@ class App extends React.Component {
     this.removeAuthListener();
   }
 
+  changeLogInStatus(status){
+    console.log(status, 'log status')
+    this.setState({
+      login: status
+    })
+  }
+
+  routeToLogin(){
+    return(
+     <Route path="/login" render={() => <Login state={this.state} log={this.changeLogInStatus}/> } />
+    )
+  }
+
   render() {
     if (this.state.loading === true) {
       return (
@@ -71,29 +85,54 @@ class App extends React.Component {
       );
     }
 
-    return (
+    if (this.state.login === false) {
+  return (
+    <div id="notLogged">
+      <BrowserRouter>
       <div>
+        <Header authenticated={this.state.authenticated} />
+        <div className="main-content"  >
+          <div className="workspace" >
+            <Route path="/login" render={() => <Login state={this.state} log={this.changeLogInStatus}/>} />
+            <Route path="/logout" render={() => <Logout state={this.state} log={this.changeLogInStatus} />} />
+          </div>
+        </div>
+      </div>
+    </BrowserRouter>
+      <h3 id ="pleaseLog"> Please Log In To Play </h3>
+      <img id = "picGif" src="https://3.bp.blogspot.com/-lkiR0ndC6FY/WCzoKkPPVkI/AAAAAAAAB2I/yr7gA8T3jx0kkB_8GmGeFI9GvK85Sm39QCLcB/s1600/ThanksgivingGratitudePictionary.jpg"/>
+    </div>
+  );
+}
+
+
+    return (
+      <div id='firstDiv'>
         <BrowserRouter>
           <div>
             <Header authenticated={this.state.authenticated} />
-            <div className="main-content" style={{padding: "1rem"}} >
+            <div className="main-content"  >
               <div className="workspace" >
-                <Route path="/login" render={() => <Login state={this.state} />} />
-                <Route path="/logout" render={() => <Logout state={this.state} />} />
+                <Route path="/login" render={() => <Login state={this.state} log={this.changeLogInStatus}/>} />
+                <Route path="/logout" render={() => <Logout state={this.state} log={this.changeLogInStatus}/>} />
               </div>
             </div>
           </div>
         </BrowserRouter>
       <div id="whole">
-        <GamePlayTimer socket={this.state.socket}/>
-        <Worddisplay socket={this.state.socket} uid={this.state.user.uid} />
         <section className="sidebar">
           <UserBox socket={this.state.socket} />
           <ChatBox socket={this.state.socket} auth_user={this.state.user} />
         </section>
-        <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
+      <div id="wordCanvasDisplay">
+        <div id="timerWordDisplay">
+          <GamePlayTimer socket={this.state.socket} log={this.state.login}/>
+          <Worddisplay socket={this.state.socket} uid={this.state.user.uid} />
+        </div>
+          <Canvas socket={this.state.socket} uid={this.state.user.uid}/>
+        </div>
       </div>
-      </div>
+    </div>
     );
   }
 }

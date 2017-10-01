@@ -46,6 +46,7 @@ class Login extends Component {
           this.setState({
             user: user_id,
           });
+          this.props.log(true);
           this.props.state.socket.emit('connect user', user_id);
           this.setState({ redirect: true });
         }
@@ -84,6 +85,7 @@ class Login extends Component {
           this.setState({
             user: user_id,
           });
+          this.props.log(true);
           this.props.state.socket.emit('connect user', user_id);
           this.loginForm.reset();
           this.setState({redirect: true});

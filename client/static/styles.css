@@ -1,60 +1,95 @@
 * { 
-	margin: 0;
+	 margin: 0;
 	 padding: 0; 
-	 box-sizing: border-box; 
 }
 
-/*container for users and chats*/
+
+html, body, #app, #firstDiv {
+	height:100%;
+	width: 100%;
+	position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
 
 #whole{
 	display:flex;
-	flex-direction: row;
+	height: 100%;
+	width: 100%;
 }
 
 .sidebar {
-  flex-direction: row; 
-  flex: 1 0 10em; 
+  flex-direction: column; 
+  flex: .6; 
   background-color: lightgray;
-  max-width: 400px;
+  
+}
+
+#wordCanvasDisplay{
+	flex-direction: row;
+	flex: 2;
+	height: 100%;
+	width: 100%;
+}
+
+#timerWordDisplay{
+	background-color: #00FFFF;
+	border-radius: 5px;
+	border: solid black 1px;
+	text-align: center;
+	flex-direction: column;
+	flex: 1;
+	min-height: 4em;
+	max-height: 4em;
+	margin: 0;
+}
+
+.whiteboard {
+  height: 100%;
+  width: 100%;
 }
 
 #draw-comp {
+	margin: 0;
 	border: solid black 2px;
 	text-align: center;
-	flex-grow: 1;
+	flex: 1;
+	height: 100%;
+	width: 100%;
 }
 
-
 .userBox{
+	height: 50%;
   font-size: 1.2em;
-  height:425px;
+  flex-direction: row;
+  flex-grow: 1;
   background-color: lightgray;
 }
 
 .chatWrapper{
-  height:215px;
-  width: 100%;
-  max-width: 396px;
-  border-radius: 5px;
   display: flex;
+  max-height: 30rem;
+  width: 100%;
+  flex: 1;
   align-items: flex-start;
   flex-direction: column;
-  box-shadow: 3px 3px #ccc;
   overflow-x: hidden;
   overflow-y: scroll; 
-  padding-bottom: 50px;  
+  padding-bottom: 3em;  
 }
 
-#chatBoxTitle{
+.chatBoxTitle{
 	background-color: #00FFFF;
 	border-radius: 5px;
-	display: flex;
 	position: relative;
 	flex-direction: column;
 	flex-grow: 1;
-	min-width: 396px;
-	min-height: 20px;
-	max-height: 20px;
+	min-width: 25rem;
+	max-width: 25rem;
+	min-height: 1.5em;
+	max-height: 1.5em;
 	margin-bottom: 5px;
 	text-align: center;
 	color: white;
@@ -137,7 +172,7 @@
   font-weight: 500;
   line-height: 1.3;
   -webkit-appearance: none;
-  -moz-appearance:    none;
+  -moz-appearance: none;
   justify-content: center;
   align-items: center;
   flex: 0 0 160px;
@@ -166,3 +201,91 @@
 #messages li:nth-child(odd) { 
 	background: #eee; 
 }
+
+#canvasColors{
+	display: flex;
+	position:absolute;
+  bottom:0;
+  right:0;
+  height: 5.5em;
+  width: 30em;
+}
+
+#changeColor {
+	flex: .3;
+	margin-left: auto;
+  margin-right: auto;
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
+}
+
+.color {
+	flex: 1;
+	cursor: pointer;
+	border-radius: 100%;
+}
+
+.red{
+	background-color: red;
+	flex: 1;
+}
+
+.red:hover{
+	opacity: .5;
+}
+
+.black{
+	background-color: black;
+}
+
+.black:hover{
+	opacity: .5;
+}
+
+.yellow{
+	background-color: yellow;
+}
+
+.yellow:hover{
+	opacity: .5;
+}
+
+.blue{
+	background-color: blue;
+}
+
+.blue:hover{
+	opacity: .5;
+}
+
+.green{
+	background-color: green;
+}
+
+.green:hover{
+	opacity: .5;
+}
+
+.colors {
+	display: flex;
+	position:absolute;
+  bottom:0;
+  right:0;
+  height: 5.5em;
+  width: 30em;
+}
+
+#pleaseLog{
+	margin-top: 2em;
+	text-align: center;
+	margin-bottom: 2em;
+}
+
+#picGif{
+	display: block;
+    margin: auto;
+    width: 70%;
+    
+}
+  
