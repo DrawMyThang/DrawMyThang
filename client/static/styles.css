@@ -275,9 +275,17 @@ html, body, #app, #firstDiv {
   height: 5.5em;
   width: 30em;
 }
+
+#pleaseLog{
+	margin-top: 2em;
+	text-align: center;
+	margin-bottom: 2em;
+}
+
+#picGif{
+	display: block;
+    margin: auto;
+    width: 70%;
+    
+}
   
-/* .color {
-	display: inline-block;
-	height: 48px;
-	width: 48px;
-} */

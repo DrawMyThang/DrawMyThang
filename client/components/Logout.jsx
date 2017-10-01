@@ -17,6 +17,7 @@ class Logout extends Component {
       // console.log('disconnect ', user);
       console.log('disconnect ', this.props.state.user);
       this.props.state.socket.emit('disconnect user', this.props.state.user);
+      this.props.log(false);
       this.setState({ redirect: true });
     });
   }
