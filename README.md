@@ -1,6 +1,11 @@
 # DrawMyThang
 we're gonna draw that thang
 
+## Team
+Product Owner - Jason Nguyen 
+Scrum Master - Jordan Daniels
+Development Team - Daniel Lien 
+
 ### Set up this thang.
 npm install
 npm run build
