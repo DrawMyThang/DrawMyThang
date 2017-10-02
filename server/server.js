@@ -42,6 +42,10 @@ io.on('connection', (socks) => {
     io.emit('get users', usernames_uid);
   });
 
+  socks.on('erase canvas', () => {
+    io.emit('clear canvas');
+  });
+
   socks.on('connect user', (user) => {
     if (!usernames_uid.hasOwnProperty(user.uid)) {
       user.points = 0;
@@ -84,7 +88,7 @@ io.on('connection', (socks) => {
 					}
         }
         io.emit('timer', countdown);
-      }, 100);
+      }, 1000);
     }
   });
 

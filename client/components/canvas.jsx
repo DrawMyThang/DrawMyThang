@@ -112,8 +112,9 @@ class Canvas extends React.Component {
 
   onColorUpdate(e) {
     const color = e.target.className.split(' ')[1];
-    if (color === 'clear') {
+    if (color === 'clear' && this.state.isArtist) {
       this.wipeCanvas();
+      this.props.socket.emit('erase canvas');
     }
     this.currentColor.color = e.target.className.split(' ')[1];
   }
