@@ -1,16 +1,15 @@
 # DrawMyThang
-we're gonna draw that thang
+We're gonna draw that thang
 
-## Team
-Product Owner - Jason Nguyen 
-Scrum Master - Jordan Daniels
-Development Team - Daniel Lien 
+## Description 
+An online pictionary game.
 
-### Set up this thang.
+https://mighty-spire-83850.herokuapp.com/
+
+## Installation
+```
 npm install
-npm run build
-npm start
-go to localhost:8080
+```
 
 This project requires [firebase](https://firebase.google.com/)
 
@@ -26,3 +25,30 @@ const config = {
   messagingSenderId: "SUPER_DUPER_AWESOME_MESSAGING_SENDER_ID_Quotes_Required"
 };
 ```
+
+Same procedure for MongoDB. Include your MongoDB URI.
+
+```
+const EXAMPLE_URI = 'mongodb://SUPER_DUPER_AWESOME_MONGO_DB';
+```
+
+Finally build and start.
+```
+npm run build
+npm start
+```
+
+## Usage
+
+Wait for 2 more players and have at it. Once you get on this train, there is no getting off.
+
+## Contributing
+//TODO
+
+## Credits
+- **Product Manager:** [Jason Nguyen](https://github.com/Jnguy142)
+- **Scrum Master:** [Jordan Daniels](https://github.com/liplylie)
+- **Dev Monkey:** [Daniel Lien](https://github.com/Audiodrome)
+
+## License
+MIT
