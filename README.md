@@ -4,7 +4,7 @@ We're gonna draw that thang
 ## Description 
 An online pictionary game.
 
-https://mighty-spire-83850.herokuapp.com/
+https://stark-headland-45901.herokuapp.com/
 
 ## Installation
 ```
